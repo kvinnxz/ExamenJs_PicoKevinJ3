@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel El Rincón del Carmen</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <!-- ==============================
+       HEADER / NAVBAR
+  =============================== -->
+  <header class="main-header">
+    <div class="logo">
+      <img src="logo.png" alt="Logo Hotel El Rincón del Carmen">
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="/paginas/habitaciones/habitaciones.html">Habitaciones</a></li>
+        <li><a href="/paginas/reservas/reservas.html">Reservas</a></li>
+        <li><a href="/paginas/login/login.html"></a>Login</a></li>
+        <li><a href="/paginas/contacto/contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ==============================
+       HERO CON VIDEO
+  =============================== -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop>
+      <source src="hotel-video.mp4" type="video/mp4">
+      Tu navegador no soporta el video.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <h1>Bienvenido a El Rincón del Carmen</h1>
+      <p>Vive una experiencia única de confort y lujo en nuestro hotel, donde cada detalle está diseñado para tu bienestar.</p>
+      <a href="reservas.html" class="btn">Reservar ahora</a>
+    </div>
+  </section>
+
+  <!-- ==============================
+       INTRODUCCIÓN DEL HOTEL
+  =============================== -->
+  <section class="introduccion">
+    <div class="intro-text">
+      <h2>Acerca de Nosotros</h2>
+      <p>El Hotel El Rincón del Carmen combina elegancia, confort y un servicio excepcional para que cada estancia sea inolvidable. Disfruta de instalaciones modernas, espacios amplios y una atención personalizada que garantiza momentos únicos durante tu visita.</p>
+    </div>
+  </section>
+
+  <!-- ==============================
+       CARRUSEL DE HABITACIONES
+  =============================== -->
+  <section class="habitaciones">
+    <h2 style="text-align:center; margin:2rem 0; color:#2c3e50;">Habitaciones</h2>
+    <habitaciones-carousel>
+      <div class="carrusel-card">
+        <img src="habitacion1-1.jpg" alt="Habitación 1">
+        <img src="habitacion1-2.jpg" alt="Habitación 1">
+        <img src="habitacion1-3.jpg" alt="Habitación 1">
+        <img src="habitacion1-4.jpg" alt="Habitación 1">
+        <h3>Habitación Deluxe</h3>
+        <p>Amplia y luminosa, con balcón privado y vista al jardín. Ideal para parejas que buscan confort y elegancia.</p>
+      </div>
+      <div class="carrusel-card">
+        <img src="habitacion2-1.jpg" alt="Habitación 2">
+        <img src="habitacion2-2.jpg" alt="Habitación 2">
+        <img src="habitacion2-3.jpg" alt="Habitación 2">
+        <img src="habitacion2-4.jpg" alt="Habitación 2">
+        <h3>Suite Ejecutiva</h3>
+        <p>Diseñada para ejecutivos, con área de trabajo, sala de estar y todas las comodidades para una estancia productiva y relajante.</p>
+      </div>
+      <div class="carrusel-card">
+        <img src="habitacion3-1.jpg" alt="Habitación 3">
+        <img src="habitacion3-2.jpg" alt="Habitación 3">
+        <img src="habitacion3-3.jpg" alt="Habitación 3">
+        <img src="habitacion3-4.jpg" alt="Habitación 3">
+        <h3>Habitación Familiar</h3>
+        <p>Perfecta para familias, con espacio suficiente para todos, cama adicional y servicios que garantizan comodidad y diversión.</p>
+      </div>
+    </habitaciones-carousel>
+  </section>
+
+  <!-- ==============================
+       ÁREAS DEL HOTEL
+  =============================== -->
+  <section class="areas">
+    <h2>Áreas del Hotel</h2>
+    <div class="areas-grid">
+      <div class="area-card">
+        <div class="area-img"></div>
+        <h3>Piscina</h3>
+        <p>Nuestra piscina panorámica es el lugar perfecto para relajarse y disfrutar de la vista mientras tomas el sol o te das un refrescante baño.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-img"></div>
+        <h3>Spa</h3>
+        <p>Relájate con tratamientos exclusivos de nuestro spa, diseñados para renovar cuerpo y mente en un ambiente de tranquilidad y lujo.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-img"></div>
+        <h3>Gimnasio</h3>
+        <p>Equipado con máquinas modernas y espacio para entrenamiento funcional, nuestro gimnasio te permite mantener tu rutina sin salir del hotel.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       SERVICIOS DESTACADOS
+  =============================== -->
+  <section class="servicios">
+    <h2>Servicios Destacados</h2>
+    <div class="servicios-grid">
+      <div class="servicio-card">
+        <div class="servicio-img"></div>
+        <h3>Desayuno Gourmet</h3>
+        <p>Disfruta de un desayuno delicioso con productos frescos y locales, preparado por nuestros chefs para empezar tu día con energía.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-img"></div>
+        <h3>Internet Premium</h3>
+        <p>Mantente conectado en todas las áreas del hotel con nuestra conexión de alta velocidad, ideal para trabajar o disfrutar de entretenimiento online.</p>
+      </div>
+      <div class="servicio-card">
+        <div class="servicio-img"></div>
+        <h3>Minibar</h3>
+        <p>Encuentra una selección de bebidas y snacks en tu habitación, disponible en todo momento para tu comodidad y disfrute.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       TESTIMONIOS
+  =============================== -->
+  <section class="testimonios">
+    <h2>Testimonios</h2>
+    <div class="testimonios-grid">
+      <div class="testimonio-card">
+        <p>"Un lugar increíble, atención impecable y habitaciones de lujo. Me sentí como en casa desde el primer momento."</p>
+        <div class="testimonio-footer">
+          <div class="testimonio-img"></div>
+          <span>María Pérez</span>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <p>"Definitivamente volveré, la experiencia fue inolvidable. El personal es muy atento y las instalaciones son de primera."</p>
+        <div class="testimonio-footer">
+          <div class="testimonio-img"></div>
+          <span>Carlos Ramírez</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       FOOTER
+  =============================== -->
+  <footer>
+    <p>© 2025 Hotel El Rincón del Carmen | Todos los derechos reservados</p>
+    <p>Contacto: <a href="mailto:info@rincondelcarmen.com">info@rincondelcarmen.com</a></p>
+    <p>Desarrollado por Kevin</p>
+  </footer>
+
+</body>
+</html>

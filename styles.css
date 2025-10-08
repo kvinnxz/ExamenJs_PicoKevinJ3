@@ -1,0 +1,389 @@
+/* ==============================
+   RESET Y ESTILOS GENERALES
+=============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  line-height: 1.6;
+  background-color: #fefefe;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ==============================
+   NAVBAR
+=============================== */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background-color: #1f1f1f;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.main-header .logo img {
+  width: 150px;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.main-nav a {
+  color: #fff;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: #f39c12;
+}
+
+@media (max-width: 768px) {
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* ==============================
+   HERO CON VIDEO
+=============================== */
+.hero {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31,31,31,0.5);
+}
+
+.hero-text {
+  position: absolute;
+  text-align: center;
+  color: #fff;
+  z-index: 10;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero-text .btn {
+  padding: 0.8rem 2rem;
+  background-color: #f39c12;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-text .btn:hover {
+  background-color: #d87c00;
+}
+
+/* ==============================
+   INTRODUCCIÓN DEL HOTEL
+=============================== */
+.introduccion {
+  padding: 4rem 3rem;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.introduccion h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.introduccion p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #555;
+}
+
+/* ==============================
+   CARRUSEL DE HABITACIONES
+=============================== */
+habitaciones-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.carrusel-card {
+  flex: 0 0 300px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.carrusel-card:hover {
+  transform: scale(1.05);
+}
+
+.carrusel-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.carrusel-card h3 {
+  font-size: 1.5rem;
+  margin: 1rem;
+  color: #2c3e50;
+}
+
+.carrusel-card p {
+  font-size: 1rem;
+  margin: 0 1rem 1rem 1rem;
+  color: #555;
+}
+
+/* ==============================
+   ÁREAS DEL HOTEL
+=============================== */
+.areas {
+  padding: 4rem 3rem;
+  background-color: #fff;
+  text-align: center;
+}
+
+.areas h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+.areas-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.area-card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  width: 300px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.area-card:hover {
+  transform: scale(1.05);
+}
+
+.area-card .area-img {
+  width: 100%;
+  height: 200px;
+  background-color: #ccc;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.area-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.area-card p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* ==============================
+   SERVICIOS DESTACADOS
+=============================== */
+.servicios {
+  padding: 4rem 3rem;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.servicios h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+.servicios-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.servicio-card {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 300px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.servicio-card:hover {
+  transform: scale(1.05);
+}
+
+.servicio-card .servicio-img {
+  width: 100%;
+  height: 200px;
+  background-color: #ccc;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.servicio-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.servicio-card p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* ==============================
+   TESTIMONIOS
+=============================== */
+.testimonios {
+  padding: 4rem 3rem;
+  background-color: #fff;
+  text-align: center;
+}
+
+.testimonios h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+.testimonios-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.testimonio-card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  width: 300px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.testimonio-card:hover {
+  transform: scale(1.05);
+}
+
+.testimonio-card p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.testimonio-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonio-footer .testimonio-img {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+/* ==============================
+   FOOTER
+=============================== */
+footer {
+  padding: 2rem 3rem;
+  background-color: #1f1f1f;
+  color: #fff;
+  text-align: center;
+}
+
+footer a {
+  color: #f39c12;
+}
+
+footer a:hover {
+  color: #d87c00;
+}
+
+/* ==============================
+   RESPONSIVE GENERAL
+=============================== */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .carrusel-card, .area-card, .servicio-card, .testimonio-card {
+    width: 90%;
+  }
+
+  .main-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
