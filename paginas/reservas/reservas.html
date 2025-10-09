@@ -1,60 +1,260 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reservas - Hotel</title>
-  <link rel="stylesheet" href="reservas.css">
-  <script src="reservas.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Hotel el Rincón del Carmen</title>
+    <link rel="stylesheet" href="reservas.css">
+    <script src="reservas.js" defer></script>
 </head>
 <body>
+    <!-- NAVBAR -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="../../index.html"><img src="../../imagenes/logo.png" alt="Hotel el Rincón del Carmen"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html">Inicio</a></li>
+                <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                <li><a href="reservas.html" class="active">Reservas</a></li>
+                <li><a href="../login/login.html" id="nav-login">Login</a></li>
+                <li><a href="../registro/registro.html" id="nav-registro">Registro</a></li>
+                <li><a href="../contacto/contacto.html">Contacto</a></li>
+                <li id="nav-usuario" style="display: none;">
+                    <a href="#" id="user-menu">
+                        <span id="user-name"></span> ▼
+                    </a>
+                    <div class="user-dropdown">
+                        <a href="#" id="ver-reservas">Mis Reservas</a>
+                        <a href="#" id="cerrar-sesion">Cerrar Sesión</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- NAVBAR -->
-  <header class="main-header">
-    <div class="logo">
-      <a href="../../index.html"><img src="../../imagenes/logo.png" alt="Hotel"></a>
+    <!-- HERO SECTION -->
+    <section class="hero-reservas">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Reservas Online</h1>
+            <p>Encuentra y reserva tu habitación ideal al mejor precio</p>
+        </div>
+    </section>
+
+    <!-- BANNER DE USUARIO -->
+    <div id="user-banner" class="user-banner" style="display: none;">
+        <div class="container">
+            <span>👋 Hola, <strong id="banner-user-name"></strong></span>
+            <span>Tienes <strong id="reservas-count">0</strong> reserva(s) activa(s)</span>
+        </div>
     </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="../../index.html">Inicio</a></li>
-        <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
-        <li><a href="reservas.html" class="active">Reservas</a></li>
-        <li><a href="../login/login.html">Login</a></li>
-        <li><a href="../contacto/contacto.html">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- FORMULARIO DE BÚSQUEDA -->
-  <section class="reserva-busqueda">
-    <h2>Consulta de disponibilidad</h2>
-    <form id="buscar-form">
-      <div class="form-group">
-        <label for="fecha-inicio">Fecha de inicio</label>
-        <input type="date" id="fecha-inicio" required>
-      </div>
-      <div class="form-group">
-        <label for="fecha-fin">Fecha de fin</label>
-        <input type="date" id="fecha-fin" required>
-      </div>
-      <div class="form-group">
-        <label for="personas">Personas</label>
-        <input type="number" id="personas" min="1" required>
-      </div>
-      <button type="submit" class="btn-buscar">Buscar</button>
-    </form>
-  </section>
+    <!-- FORMULARIO DE BÚSQUEDA MEJORADO -->
+    <section class="reserva-busqueda">
+        <div class="container">
+            <h2>Consulta de Disponibilidad</h2>
+            
+            <form id="buscar-form" class="buscar-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fecha-inicio">Fecha de Llegada *</label>
+                        <input type="date" id="fecha-inicio" required min="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fecha-fin">Fecha de Salida *</label>
+                        <input type="date" id="fecha-fin" required min="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="personas">Número de Personas *</label>
+                        <select id="personas" required>
+                            <option value="">Seleccionar</option>
+                            <option value="1">1 Persona</option>
+                            <option value="2">2 Personas</option>
+                            <option value="3">3 Personas</option>
+                            <option value="4">4 Personas</option>
+                            <option value="5">5 Personas</option>
+                            <option value="6">6+ Personas</option>
+                        </select>
+                    </div>
+                </div>
 
-  <!-- HABITACIONES DISPONIBLES -->
-  <section class="habitaciones-disponibles">
-    <h2>Habitaciones disponibles</h2>
-    <div id="available-rooms"></div>
-  </section>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        🔍 Buscar Habitaciones
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="btn-limpiar">
+                        🗑️ Limpiar
+                    </button>
+                </div>
+            </form>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2025 Hotel. Todos los derechos reservados.</p>
-  </footer>
+            <!-- RESUMEN DE BÚSQUEDA -->
+            <div id="resumen-busqueda" class="resumen-busqueda" style="display: none;">
+                <h3>Resumen de tu búsqueda</h3>
+                <div class="resumen-grid">
+                    <div class="resumen-item">
+                        <span>📅 Fechas:</span>
+                        <strong id="resumen-fechas"></strong>
+                    </div>
+                    <div class="resumen-item">
+                        <span>👥 Personas:</span>
+                        <strong id="resumen-personas"></strong>
+                    </div>
+                    <div class="resumen-item">
+                        <span>⏱️ Noches:</span>
+                        <strong id="resumen-noches"></strong>
+                    </div>
+                    <div class="resumen-item">
+                        <span>🏨 Habitaciones encontradas:</span>
+                        <strong id="resumen-habitaciones"></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HABITACIONES DISPONIBLES -->
+    <section class="habitaciones-disponibles">
+        <div class="container">
+            <h2>Habitaciones Disponibles</h2>
+            
+            <div id="loading-habitaciones" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Buscando habitaciones disponibles...</p>
+            </div>
+
+            <div id="available-rooms" class="rooms-grid">
+                <!-- Las habitaciones se cargan aquí -->
+            </div>
+
+            <div id="no-habitaciones" class="no-resultados" style="display: none;">
+                <div class="no-resultados-icon">😔</div>
+                <h3>No hay habitaciones disponibles</h3>
+                <p>No encontramos habitaciones que coincidan con tu búsqueda.</p>
+                <p>Intenta ajustar las fechas o el número de personas.</p>
+                <button class="btn btn-primary" onclick="document.getElementById('btn-limpiar').click()">
+                    🔄 Nueva Búsqueda
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DE CONFIRMACIÓN DE RESERVA -->
+    <div id="modal-reserva" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirmar Reserva</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="reserva-detalles">
+                    <!-- Los detalles de la reserva se cargan aquí -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-cancelar-reserva">Cancelar</button>
+                <button class="btn btn-primary" id="btn-confirmar-reserva">Confirmar Reserva</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE LOGIN REQUERIDO -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Iniciar Sesión Requerido</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Para realizar una reserva, necesitas iniciar sesión en tu cuenta.</p>
+                <div class="modal-actions">
+                    <a href="../login/login.html" class="btn btn-primary">Iniciar Sesión</a>
+                    <a href="../registro/registro.html" class="btn btn-secondary">Crear Cuenta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE MIS RESERVAS -->
+    <section id="mis-reservas-section" class="mis-reservas" style="display: none;">
+        <div class="container">
+            <h2>Mis Reservas Activas</h2>
+            <div id="lista-reservas" class="reservas-lista">
+                <!-- Las reservas del usuario se cargan aquí -->
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMACIÓN ADICIONAL -->
+    <section class="info-reservas">
+        <div class="container">
+            <h2>Información Importante</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">🕒</div>
+                    <h3>Check-in & Check-out</h3>
+                    <p><strong>Check-in:</strong> Desde las 3:00 PM</p>
+                    <p><strong>Check-out:</strong> Hasta las 12:00 PM</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">👶</div>
+                    <h3>Política de Niños</h3>
+                    <p>Niños menores de 5 años se alojan gratis compartiendo cama con padres.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🐾</div>
+                    <h3>Mascotas</h3>
+                    <p>Aceptamos mascotas pequeñas con cargo adicional. Consulta condiciones.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">❌</div>
+                    <h3>Cancelaciones</h3>
+                    <p>Cancelación gratuita hasta 48 horas antes del check-in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="../../imagenes/logo.png" alt="Hotel Logo" class="footer-logo">
+                    <p>Hotel el Rincón del Carmen<br>Donde cada estancia es especial</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="../../index.html">Inicio</a></li>
+                        <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                        <li><a href="reservas.html">Reservas</a></li>
+                        <li><a href="../contacto/contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📞 +57 300 123 4567</p>
+                    <p>✉️ info@rincondelcarmen.com</p>
+                    <p>📍 Calle 123 #45-67, Rincón del Carmen</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Atención al Cliente</h4>
+                    <p>🕒 24/7 Disponible</p>
+                    <p>💬 Chat en línea</p>
+                    <p>📧 Soporte email</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hotel el Rincón del Carmen. Todos los derechos reservados.</p>
+                <p>Desarrollado por Kevin</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

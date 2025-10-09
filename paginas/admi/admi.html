@@ -1,60 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Administración</title>
-  <link rel="stylesheet" href="admi.css">
-  <script src="admi.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Hotel el Rincón del Carmen</title>
+    <link rel="stylesheet" href="admi.css">
+    <script src="admi.js"defer></script>
 </head>
 <body>
+    <!-- LOGIN ADMIN -->
+    <div id="login-admin">
+        <div class="login-admin">
+            <div class="login-card">
+                <h2>🔐 Admin Login</h2>
+                <form id="admin-login-form">
+                    <input type="text" id="admin-user" placeholder="Usuario" required>
+                    <input type="password" id="admin-pass" placeholder="Contraseña" required>
+                    <button type="submit" class="btn-primary">Entrar</button>
+                </form>
+                <p style="margin-top: 20px; color: #666; font-size: 0.9rem;">
+                    <strong>Credenciales:</strong><br>
+                    Usuario: admin<br>
+                    Contraseña: admin123
+                </p>
+            </div>
+        </div>
+    </div>
 
-  <!-- LOGIN ADMIN -->
-  <div class="login-admin" id="loginAdmin">
-    <h2>Acceso Administrador</h2>
-    <form id="adminLoginForm">
-      <input type="text" id="adminUser" placeholder="Usuario" required>
-      <input type="password" id="adminPass" placeholder="Contraseña" required>
-      <button type="submit">Ingresar</button>
-    </form>
-    <p id="loginError" class="error"></p>
-  </div>
+    <!-- PANEL ADMIN -->
+    <div id="admin-panel">
+        <div class="admin-container">
+            <!-- Header -->
+            <header class="admin-header">
+                <h1>🛎️ Panel de Administración</h1>
+                <div class="admin-actions">
+                    <span id="admin-user">Admin</span>
+                    <button id="logout-btn">Cerrar Sesión</button>
+                </div>
+            </header>
 
-  <!-- PANEL ADMIN -->
-  <div class="admin-panel" id="adminPanel" style="display:none;">
-    <header>
-      <h1>Panel de Administración</h1>
-      <button id="logoutBtn">Cerrar sesión</button>
-    </header>
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Habitaciones</h3>
+                    <span id="total-rooms">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Reservas Activas</h3>
+                    <span id="active-bookings">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Ingresos Hoy</h3>
+                    <span id="today-income">$0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Ocupación</h3>
+                    <span id="occupancy-rate">0%</span>
+                </div>
+            </div>
 
-    <!-- Gestión de Habitaciones -->
-    <section class="habitaciones-section">
-      <h2>Gestión de Habitaciones</h2>
-      <form id="roomForm">
-        <input type="text" id="roomName" placeholder="Nombre o número" required>
-        <input type="number" id="roomBeds" placeholder="Camas" required>
-        <input type="number" id="roomMaxPeople" placeholder="Personas Máx." required>
-        <input type="number" id="roomPrice" placeholder="Precio por noche" required>
-        <input type="text" id="roomImage" placeholder="URL imagen local" required>
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="habitaciones">Habitaciones</button>
+                <button class="tab-btn" data-tab="reservas">Reservas</button>
+            </div>
 
-        <div class="services">
-          <label><input type="checkbox" value="Internet"> Internet</label>
-          <label><input type="checkbox" value="Minibar"> Minibar</label>
-          <label><input type="checkbox" value="Jacuzzi"> Jacuzzi</label>
+            <!-- Habitaciones Tab -->
+            <div id="habitaciones" class="tab-content active">
+                <div class="section-header">
+                    <h2>Gestión de Habitaciones</h2>
+                    <button id="add-room-btn" class="btn-primary">+ Nueva Habitación</button>
+                </div>
+                <div id="rooms-list" class="cards-grid"></div>
+            </div>
+
+            <!-- Reservas Tab -->
+            <div id="reservas" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestión de Reservas</h2>
+                    <div class="filters">
+                        <select id="booking-filter">
+                            <option value="todas">Todas las reservas</option>
+                            <option value="confirmada">Confirmadas</option>
+                            <option value="cancelada">Canceladas</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="bookings-list" class="cards-grid"></div>
+            </div>
         </div>
 
-        <button type="submit">Guardar Habitación</button>
-      </form>
-
-      <div id="roomsList"></div>
-    </section>
-
-    <!-- Gestión de Reservas -->
-    <section class="reservas-section">
-      <h2>Gestión de Reservas</h2>
-      <div id="reservasList"></div>
-    </section>
-  </div>
+        <!-- Modal para Habitaciones -->
+        <div id="room-modal" class="modal">
+            <div class="modal-content">
+                <h3 id="modal-title">Nueva Habitación</h3>
+                <form id="room-form">
+                    <input type="hidden" id="room-id">
+                    <div class="form-grid">
+                        <input type="text" id="room-name" placeholder="Nombre" required>
+                        <select id="room-type" required>
+                            <option value="">Tipo</option>
+                            <option value="individual">Individual</option>
+                            <option value="doble">Doble</option>
+                            <option value="suite">Suite</option>
+                            <option value="familiar">Familiar</option>
+                        </select>
+                        <input type="number" id="room-price" placeholder="Precio/noche" required>
+                        <input type="number" id="room-capacity" placeholder="Capacidad" required>
+                        <input type="number" id="room-beds" placeholder="Camas" required>
+                    </div>
+                    <textarea id="room-desc" placeholder="Descripción"></textarea>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="adminPanel.closeModal()">Cancelar</button>
+                        <button type="submit" class="btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Hotel el Rincón del Carmen</title>
+    <link rel="stylesheet" href="registro.css">
+    <script src="registro.js" defer></script>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="../../index.html"><img src="../../imagenes/logo.png" alt="Hotel el Rincón del Carmen"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html">Inicio</a></li>
+                <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                <li><a href="../reservas/reservas.html">Reservas</a></li>
+                <li><a href="../login/login.html">Login</a></li>
+                <li><a href="registro.html" class="active">Registro</a></li>
+                <li><a href="../contacto/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-registro">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Crear Cuenta</h1>
+            <p>Únete a nosotros y disfruta de una experiencia personalizada</p>
+        </div>
+    </section>
+
+    <!-- FORMULARIO DE REGISTRO -->
+    <section class="registro-section">
+        <div class="container">
+            <div class="registro-container">
+                <div class="registro-header">
+                    <h2>Registro de Usuario</h2>
+                    <p>Complete todos los campos para crear su cuenta</p>
+                </div>
+
+                <form id="registro-form" class="registro-form">
+                    <!-- Información Personal -->
+                    <div class="form-section">
+                        <h3>Información Personal</h3>
+                        
+                        <div class="form-group">
+                            <label for="identificacion">Número de Identificación *</label>
+                            <input type="text" id="identificacion" name="identificacion" required 
+                                   placeholder="Ej: 1234567890" minlength="6" maxlength="20">
+                            <span class="error-message" id="error-identificacion"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombre-completo">Nombre Completo *</label>
+                            <input type="text" id="nombre-completo" name="nombre-completo" required 
+                                   placeholder="Ej: Juan Pérez García" minlength="5" maxlength="100">
+                            <span class="error-message" id="error-nombre"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nacionalidad">Nacionalidad *</label>
+                            <select id="nacionalidad" name="nacionalidad" required>
+                                <option value="">Seleccione su nacionalidad</option>
+                                <option value="colombiana">Colombiana</option>
+                                <option value="argentina">Argentina</option>
+                                <option value="brasilena">Brasileña</option>
+                                <option value="chilena">Chilena</option>
+                                <option value="mexicana">Mexicana</option>
+                                <option value="peruana">Peruana</option>
+                                <option value="espanola">Española</option>
+                                <option value="estadounidense">Estadounidense</option>
+                                <option value="canadiense">Canadiense</option>
+                                <option value="otra">Otra</option>
+                            </select>
+                            <span class="error-message" id="error-nacionalidad"></span>
+                        </div>
+                    </div>
+
+                    <!-- Información de Contacto -->
+                    <div class="form-section">
+                        <h3>Información de Contacto</h3>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required 
+                                   placeholder="Ej: juan.perez@email.com">
+                            <span class="error-message" id="error-email"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="tel" id="telefono" name="telefono" required 
+                                   placeholder="Ej: +57 300 123 4567" minlength="10" maxlength="15">
+                            <span class="error-message" id="error-telefono"></span>
+                        </div>
+                    </div>
+
+                    <!-- Seguridad -->
+                    <div class="form-section">
+                        <h3>Seguridad</h3>
+                        
+                        <div class="form-group">
+                            <label for="password">Contraseña *</label>
+                            <input type="password" id="password" name="password" required 
+                                   placeholder="Mínimo 8 caracteres" minlength="8">
+                            <div class="password-requirements">
+                                <span>La contraseña debe contener:</span>
+                                <ul>
+                                    <li id="req-length">Mínimo 8 caracteres</li>
+                                    <li id="req-uppercase">Una letra mayúscula</li>
+                                    <li id="req-lowercase">Una letra minúscula</li>
+                                    <li id="req-number">Un número</li>
+                                    <li id="req-special">Un carácter especial</li>
+                                </ul>
+                            </div>
+                            <span class="error-message" id="error-password"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">Confirmar Contraseña *</label>
+                            <input type="password" id="confirm-password" name="confirm-password" required 
+                                   placeholder="Repita su contraseña">
+                            <span class="error-message" id="error-confirm-password"></span>
+                        </div>
+                    </div>
+
+
+                    <!-- Botones -->
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-primary btn-large" id="btn-registrar">
+                            Crear Cuenta
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="btn-limpiar">
+                            Limpiar Formulario
+                        </button>
+                    </div>
+
+                    <!-- Enlace a Login -->
+                    <div class="login-link">
+                        <p>¿Ya tienes una cuenta? <a href="../login/login.html" class="link">Inicia sesión aquí</a></p>
+                    </div>
+                </form>
+
+                <!-- Mensajes de éxito/error -->
+                <div id="mensaje-exito" class="mensaje-exito" style="display: none;">
+                    <h3>¡Registro Exitoso!</h3>
+                    <p>Tu cuenta ha sido creada correctamente. Serás redirigido al login en <span id="contador-redireccion">5</span> segundos.</p>
+                    <a href="../login/login.html" class="btn btn-primary">Ir al Login Ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="../../imagenes/logo.png" alt="Hotel Logo" class="footer-logo">
+                    <p>Hotel el Rincón del Carmen<br>Donde cada estancia es especial</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="../../index.html">Inicio</a></li>
+                        <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                        <li><a href="../reservas/reservas.html">Reservas</a></li>
+                        <li><a href="registro.html">Registro</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📞 +57 300 123 4567</p>
+                    <p>✉️ info@rincondelcarmen.com</p>
+                    <p>📍 Calle 123 #45-67, Rincón del Carmen</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hotel el Rincón del Carmen. Todos los derechos reservados.</p>
+                <p>Desarrollado por Kevin</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

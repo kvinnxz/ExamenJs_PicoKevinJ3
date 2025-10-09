@@ -1,0 +1,108 @@
+/* ==============================
+   RESPONSIVE DESIGN
+=============================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+}
+
+/* Móviles Grandes */
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .introduccion,
+  .habitaciones-preview,
+  .areas-hotel,
+  .servicios-destacados,
+  .testimonios,
+  .cta-final {
+    padding: 3rem 1rem;
+  }
+
+  .features-grid,
+  .areas-grid,
+  .servicios-grid,
+  .testimonios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-item {
+    flex: 0 0 250px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+/* Móviles Pequeños */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .introduccion h2,
+  .habitaciones-preview h2,
+  .areas-hotel h2,
+  .servicios-destacados h2,
+  .testimonios h2,
+  .cta-final h2 {
+    font-size: 2rem;
+  }
+
+  .feature-card,
+  .testimonio-card {
+    padding: 1.5rem;
+  }
+
+  .carousel-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}

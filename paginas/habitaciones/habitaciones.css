@@ -1,0 +1,502 @@
+/* ==============================
+   RESET Y ESTILOS GENERALES
+=============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    background-color: #fefefe;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ==============================
+   NAVBAR (Mismo estilo)
+=============================== */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background-color: #1f1f1f;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.main-header .logo img {
+    width: 150px;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.main-nav a {
+    color: #fff;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: #f39c12;
+}
+
+/* ==============================
+   HERO SECTION HABITACIONES
+=============================== */
+.hero-habitaciones {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), 
+                url('../../imagenes/hero-habitaciones.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+}
+
+.hero-habitaciones .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-habitaciones .hero-content p {
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* ==============================
+   SECCIÓN DE FILTROS
+=============================== */
+.filtros-seccion {
+    padding: 3rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.filtros-seccion h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.filtros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.filtro-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filtro-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.filtro-group select,
+.filtro-group input {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.filtro-group select:focus,
+.filtro-group input:focus {
+    outline: none;
+    border-color: #f39c12;
+}
+
+.filtro-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    background-color: #f39c12;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #d87c00;
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: #f39c12;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+/* ==============================
+   CONTADOR DE RESULTADOS
+=============================== */
+.resultados-info {
+    padding: 1.5rem 2rem;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.resultados-info p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.resultados-info span {
+    font-weight: bold;
+    color: #f39c12;
+}
+
+/* ==============================
+   GRID DE HABITACIONES
+=============================== */
+.habitaciones-grid-section {
+    padding: 3rem 2rem;
+    background-color: #fff;
+}
+
+.habitaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* ==============================
+   WEB COMPONENT - TARJETA HABITACIÓN
+=============================== */
+.habitacion-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.habitacion-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.habitacion-imagen {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.habitacion-info {
+    padding: 1.5rem;
+}
+
+.habitacion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.habitacion-tipo {
+    font-size: 0.9rem;
+    color: #f39c12;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.habitacion-precio {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.habitacion-nombre {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.habitacion-descripcion {
+    color: #555;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.habitacion-detalles {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.detalle-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.habitacion-servicios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.servicio-tag {
+    background: #f8f9fa;
+    color: #2c3e50;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid #e9ecef;
+}
+
+.habitacion-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.habitacion-disponibilidad .disponible {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.habitacion-disponibilidad .no-disponible {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.btn-reservar {
+    background-color: #27ae60;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-reservar:hover {
+    background-color: #219653;
+}
+
+.btn-reservar:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* ==============================
+   SIN RESULTADOS
+=============================== */
+.sin-resultados {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #7f8c8d;
+}
+
+.sin-resultados h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.sin-resultados p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* ==============================
+   SERVICIOS INCLUIDOS
+=============================== */
+.servicios-incluidos {
+    padding: 3rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.servicios-incluidos h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.servicios-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.servicio-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.servicio-icon {
+    font-size: 1.5rem;
+}
+
+/* ==============================
+   FOOTER
+=============================== */
+footer {
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 3rem 2rem 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-logo {
+    width: 150px;
+    margin-bottom: 1rem;
+}
+
+.footer-section h4 {
+    margin-bottom: 1rem;
+    color: #f39c12;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a:hover {
+    color: #f39c12;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #444;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+=============================== */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .hero-habitaciones .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-habitaciones .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .filtros-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filtro-buttons {
+        flex-direction: column;
+    }
+
+    .habitaciones-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .habitacion-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .habitacion-detalles {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .habitacion-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .servicios-lista {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}

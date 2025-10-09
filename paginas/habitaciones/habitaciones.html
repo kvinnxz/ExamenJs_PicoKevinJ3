@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones - Hotel el Rincón del Carmen</title>
+    <link rel="stylesheet" href="habitaciones.css">
+    <script src="habitaciones.js" defer ></script>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="../../index.html"><img src="../../imagenes/logo.png" alt="Hotel el Rincón del Carmen"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html">Inicio</a></li>
+                <li><a href="habitaciones.html" class="active">Habitaciones</a></li>
+                <li><a href="../reservas/reservas.html">Reservas</a></li>
+                <li><a href="../login/login.html">Login</a></li>
+                <li><a href="../registro/registro.html">Registro</a></li>
+                <li><a href="../contacto/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-habitaciones">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Nuestras Habitaciones</h1>
+            <p>Descubre el confort y elegancia de nuestros espacios exclusivos</p>
+        </div>
+    </section>
+
+    <!-- FILTROS -->
+    <section class="filtros-seccion">
+        <div class="container">
+            <h2>Encuentra tu Habitación Ideal</h2>
+            <div class="filtros-grid">
+                <div class="filtro-group">
+                    <label for="tipo-filtro">Tipo de Habitación</label>
+                    <select id="tipo-filtro">
+                        <option value="todas">Todas las Habitaciones</option>
+                        <option value="individual">Individual</option>
+                        <option value="doble">Doble</option>
+                        <option value="suite">Suite</option>
+                        <option value="familiar">Familiar</option>
+                        <option value="ejecutiva">Ejecutiva</option>
+                    </select>
+                </div>
+                
+                <div class="filtro-group">
+                    <label for="precio-filtro">Precio Máximo: <span id="precio-value">$500,000</span></label>
+                    <input type="range" id="precio-filtro" min="80000" max="500000" step="10000" value="500000">
+                </div>
+                
+                <div class="filtro-group">
+                    <label for="servicios-filtro">Servicios</label>
+                    <select id="servicios-filtro">
+                        <option value="todos">Todos los Servicios</option>
+                        <option value="wifi">WiFi</option>
+                        <option value="ac">Aire Acondicionado</option>
+                        <option value="tv">TV Cable</option>
+                        <option value="vista">Vista al Mar</option>
+                        <option value="jacuzzi">Jacuzzi</option>
+                        <option value="minibar">Minibar</option>
+                        <option value="terraza">Terraza Privada</option>
+                    </select>
+                </div>
+                
+                <div class="filtro-group">
+                    <label for="personas-filtro">Personas</label>
+                    <select id="personas-filtro">
+                        <option value="0">Cualquier cantidad</option>
+                        <option value="1">1 Persona</option>
+                        <option value="2">2 Personas</option>
+                        <option value="3">3 Personas</option>
+                        <option value="4">4 Personas</option>
+                        <option value="5">5+ Personas</option>
+                    </select>
+                </div>
+
+                <div class="filtro-buttons">
+                    <button id="aplicar-filtros" class="btn btn-primary">Aplicar Filtros</button>
+                    <button id="limpiar-filtros" class="btn btn-secondary">Limpiar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTADOR DE RESULTADOS -->
+    <section class="resultados-info">
+        <div class="container">
+            <p id="contador-resultados">Mostrando <span>20</span> habitaciones disponibles</p>
+        </div>
+    </section>
+
+    <!-- GRID DE HABITACIONES -->
+    <section class="habitaciones-grid-section">
+        <div class="container">
+            <div id="habitaciones-container" class="habitaciones-grid">
+                <!-- Las habitaciones se cargan dinámicamente con JavaScript -->
+            </div>
+            
+            <div id="sin-resultados" class="sin-resultados" style="display: none;">
+                <h3>No se encontraron habitaciones</h3>
+                <p>Intenta ajustar los filtros para ver más opciones</p>
+                <button id="reset-filtros" class="btn btn-primary">Mostrar Todas las Habitaciones</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS INCLUIDOS -->
+    <section class="servicios-incluidos">
+        <div class="container">
+            <h2>Servicios Incluidos en Todas las Habitaciones</h2>
+            <div class="servicios-lista">
+                <div class="servicio-item">
+                    <span class="servicio-icon">🛏️</span>
+                    <span>Ropa de cama premium</span>
+                </div>
+                <div class="servicio-item">
+                    <span class="servicio-icon">🧼</span>
+                    <span>Artículos de baño</span>
+                </div>
+                <div class="servicio-item">
+                    <span class="servicio-icon">📶</span>
+                    <span>WiFi de alta velocidad</span>
+                </div>
+                <div class="servicio-item">
+                    <span class="servicio-icon">📺</span>
+                    <span>TV por cable</span>
+                </div>
+                <div class="servicio-item">
+                    <span class="servicio-icon">☕</span>
+                    <span>Cafetera y té</span>
+                </div>
+                <div class="servicio-item">
+                    <span class="servicio-icon">🔒</span>
+                    <span>Caja de seguridad</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="../../imagenes/logo.png" alt="Hotel Logo" class="footer-logo">
+                    <p>Hotel el Rincón del Carmen<br>Donde cada estancia es especial</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="../../index.html">Inicio</a></li>
+                        <li><a href="habitaciones.html">Habitaciones</a></li>
+                        <li><a href="../reservas/reservas.html">Reservas</a></li>
+                        <li><a href="../contacto/contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📞 +57 300 123 4567</p>
+                    <p>✉️ info@rincondelcarmen.com</p>
+                    <p>📍 Calle 123 #45-67, Rincón del Carmen</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hotel el Rincón del Carmen. Todos los derechos reservados.</p>
+                <p>Desarrollado por Kevin</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,85 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto - Hotel el Rincón del Carmen</title>
-  <link rel="stylesheet" href="contacto.css">
-  <script  src="contacto.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Hotel el Rincón del Carmen</title>
+    <link rel="stylesheet" href="contacto.css">
+    <script src="contacto.js"defer></script>
 </head>
 <body>
+    <!-- NAVBAR -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="../../index.html"><img src="../../imagenes/logo.png" alt="Hotel el Rincón del Carmen"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html">Inicio</a></li>
+                <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                <li><a href="../reservas/reservas.html">Reservas</a></li>
+                <li><a href="../login/login.html">Login</a></li>
+                <li><a href="../registro/registro.html">Registro</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- NAVBAR -->
-  <header class="main-header">
-    <div class="logo">
-      <img src="logo.png" alt="Logo Hotel el Rincón del Carmen">
-    </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="/index.html">Inicio</a></li>
-        <li><a href="/paginas/habitaciones/habitaciones.html">Habitaciones</a></li>
-        <li><a href="/paginas/reservas/reservas.html">Reservas</a></li>
-        <li><a href="/paginas/login/login.html">Login</a></li>
-        <li><a href="contacto.html" class="active">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- HERO SECTION -->
+    <section class="hero-contacto">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Contacto</h1>
+            <p>Estamos aquí para ayudarte. Contáctanos para cualquier consulta.</p>
+        </div>
+    </section>
 
-  <!-- SECCIÓN DE CONTACTO -->
-  <section class="contacto">
-    <h2>Contacto y Ubicación</h2>
-    <p>Encuéntranos y ponte en contacto con nosotros para cualquier consulta o reserva.</p>
-    <!-- Botón hacia habitaciones -->
-    <a href="habitaciones.html" class="btn-habitaciones">Ver Habitaciones</a>
+    <!-- SECCIÓN DE CONTACTO -->
+    <section class="contacto">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <p>No dudes en ponerte en contacto con nosotros para reservas, consultas o cualquier información adicional.</p>
 
+            <div class="contacto-grid">
+                <!-- Información de contacto -->
+                <div class="contacto-info">
+                    <div class="info-item">
+                        <h3>📍 Dirección</h3>
+                        <p>Calle 123 #45-67, Rincón del Carmen, España</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>📞 Teléfono</h3>
+                        <p>+57 300 123 4567</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>✉️ Email</h3>
+                        <p><a href="mailto:info@rincondelcarmen.com">info@rincondelcarmen.com</a></p>
+                    </div>
+                    <div class="info-item">
+                        <h3>🌐 Síguenos</h3>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/" target="_blank" class="social-link">
+                                <img src="../../imagenes/contacto/instagram.jpg" alt="Instagram">
+                                Instagram
+                            </a>
+                            <a href="https://www.facebook.com/tu_pagina" target="_blank" class="social-link">
+                                <img src="../../imagenes/contacto/face.png" alt="Facebook">
+                                Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="contacto-info">
-      <div class="info-item">
-        <h3>Dirección</h3>
-        <p>Calle 123 #45-67, Rincón del Carmen, Colombia</p>
-      </div>
-      <div class="info-item">
-        <h3>Teléfono</h3>
-        <p>+57 300 123 4567</p>
-      </div>
-      <div class="info-item">
-        <h3>Email</h3>
-        <p><a href="mailto:info@rincondelcarmen.com">info@rincondelcarmen.com</a></p>
-        <h3>Instagram</h3>
-        <a href="https://www.instagram.com/tu_usuario" target="_blank">
-            <img src="/imagenes/contacto/instagram.jpg" alt="Instagram del hotel" class="social-logo"> <br>@rincondelcarmen </a>
-    </div>
+                <!-- Formulario de contacto -->
+                <div class="contacto-formulario">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nombre completo *</label>
+                            <input type="text" id="name" required>
+                        </div>
 
-    <!-- MAPA -->
-    <div class="mapa">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d210.08505682501885!2d-4.337074612970004!3d37.32588132443705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6d83bfebc855e3%3A0x4cb8957be26ee222!2sEl%20Rinc%C3%B3n%20De%20Carmen!5e0!3m2!1ses-419!2sco!4v1759917651516!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
-        <br>|
-    <div class="contacto-formulario">
-      <h3>Envíanos un mensaje</h3>
-      <form id="contact-form">
-        <label for="name">Nombre completo</label>
-        <input type="text" id="name" required>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico *</label>
+                            <input type="email" id="email" required>
+                        </div>
 
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" required>
+                        <div class="form-group">
+                            <label for="subject">Asunto *</label>
+                            <input type="text" id="subject" required>
+                        </div>
 
-        <label for="subject">Asunto</label>
-        <input type="text" id="subject" required>
+                        <div class="form-group">
+                            <label for="message">Mensaje *</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
 
-        <label for="message">Mensaje</label>
-        <textarea id="message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                    </form>
+                    <div id="contact-message" class="message"></div>
+                </div>
+            </div>
 
-        <button type="submit">Enviar mensaje</button>
-      </form>
-    </div>
-  </section>
+            <!-- Mapa -->
+            <div class="mapa-container">
+                <h3>Nuestra Ubicación</h3>
+                <div class="mapa">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d210.08505682501885!2d-4.337074612970004!3d37.32588132443705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6d83bfebc855e3%3A0x4cb8957be26ee222!2sEl%20Rinc%C3%B3n%20De%20Carmen!5e0!3m2!1ses-419!2sco!4v1759917651516!5m2!1ses-419!2sco" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Hotel el Rincón del Carmen | Todos los derechos reservados</p>
-    <p>Contacto: <a href="mailto:info@rincondelcarmen.com">info@rincondelcarmen.com</a></p>
-    <p>Desarrollado por Kevin</p>
-  </footer>
-
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="../../imagenes/logo.png" alt="Hotel Logo" class="footer-logo">
+                    <p>Hotel el Rincón del Carmen<br>Donde cada estancia es especial</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="../../index.html">Inicio</a></li>
+                        <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                        <li><a href="../reservas/reservas.html">Reservas</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📞 +57 300 123 4567</p>
+                    <p>✉️ info@rincondelcarmen.com</p>
+                    <p>📍 Calle 123 #45-67, Rincón del Carmen</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hotel el Rincón del Carmen. Todos los derechos reservados.</p>
+                <p>Desarrollado por Kevin</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,133 +1,301 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
-  padding: 20px;
+    background: #f5f6fa;
+    color: #2c3e50;
 }
 
-/* LOGIN */
-.login-admin {
-  max-width: 400px;
-  margin: 60px auto;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  text-align: center;
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.login-admin h2 {
-  margin-bottom: 15px;
-}
-
-.login-admin input {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-}
-
-.login-admin button {
-  width: 100%;
-  padding: 10px;
-  background: #2d89ef;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.login-admin .error {
-  color: red;
-  margin-top: 10px;
-}
-
-/* PANEL */
-.admin-panel header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #2d89ef;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.admin-panel header h1 {
-  font-size: 20px;
-}
-
-.admin-panel header button {
-  background: #ff4d4d;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-/* SECCIONES */
-section {
-  background: #ffffff;
-  margin-bottom: 20px;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-section h2 {
-  margin-bottom: 15px;
-}
-
-#roomForm input {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-}
-
-.services {
-  margin: 10px 0;
-}
-
-.services label {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-#roomsList, #reservasList {
-  margin-top: 15px;
-}
-
-.room-item, .reserva-item {
-  background: #f9f9f9;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-
-.room-item img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-top: 8px;
-}
-
-.room-actions button, .reserva-actions button {
-  margin-right: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  .admin-panel header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .room-actions, .reserva-actions {
+/* Header */
+.admin-header {
     display: flex;
-    flex-wrap: wrap;
-  }
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.admin-header h1 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+}
+
+.admin-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#logout-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.stat-card h3 {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.stat-card span {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    background: white;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: #ecf0f1;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.tab-btn.active {
+    background: #3498db;
+    color: white;
+}
+
+/* Content */
+.tab-content {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Cards Grid */
+.cards-grid {
+    display: grid;
+    gap: 15px;
+}
+
+.room-card, .booking-card {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.booking-card.confirmada { border-left-color: #27ae60; }
+.booking-card.cancelada { border-left-color: #e74c3c; }
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 10px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.card-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+/* Forms */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-grid input, .form-grid select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    min-height: 60px;
+    margin-bottom: 15px;
+}
+
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+/* === LOGIN ADMIN === */
+.login-admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.login-card h2 {
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.login-card input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }

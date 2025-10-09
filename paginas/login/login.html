@@ -1,85 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | Hotel El Rincón del Carmen</title>
-  <link rel="stylesheet" href="login.css">
-  <script  src="login.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hotel el Rincón del Carmen</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="login.js" defer></script>
 </head>
 <body>
+    <!-- NAVBAR -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="../../index.html"><img src="../../imagenes/logo.png" alt="Hotel el Rincón del Carmen"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html">Inicio</a></li>
+                <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                <li><a href="../reservas/reservas.html">Reservas</a></li>
+                <li><a href="login.html" class="active">Login</a></li>
+                <li><a href="../registro/registro.html">Registro</a></li>
+                <li><a href="../contacto/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- NAVBAR -->
-  <header class="main-header">
-    <div class="logo">
-      <img src="logo.png" alt="Logo Hotel">
-    </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html" class="active">Inicio</a></li>
-        <li><a href="reservas.html">Reservas</a></li>
-        <li><a href="habitaciones.html">Habitaciones</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- HERO SECTION -->
+    <section class="hero-login">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Iniciar Sesión</h1>
+            <p>Accede a tu cuenta para gestionar tus reservas</p>
+        </div>
+    </section>
 
-  <!-- LOGIN -->
-  <section class="login-section" id="login-section">
-    <h2>Iniciar Sesión</h2>
-    <form id="login-form">
-      <div class="form-group">
-        <label for="login-email">Email</label>
-        <input type="email" id="login-email" required>
-      </div>
-      <div class="form-group">
-        <label for="login-password">Contraseña</label>
-        <input type="password" id="login-password" required>
-      </div>
-      <button type="submit">Entrar</button>
-    </form>
-    <p>¿No tienes cuenta? <a href="#" id="show-register">Regístrate aquí</a></p>
-  </section>
+    <!-- FORMULARIO DE LOGIN -->
+    <section class="login-section">
+        <div class="container">
+            <div class="login-container">
+                <div class="login-header">
+                    <h2>Bienvenido de Nuevo</h2>
+                    <p>Ingresa tus credenciales para acceder</p>
+                </div>
 
-  <!-- REGISTRO -->
-  <section class="register-section" id="register-section" style="display:none;">
-    <h2>Registro</h2>
-    <form id="register-form">
-      <div class="form-group">
-        <label for="reg-id">Número de Identificación</label>
-        <input type="text" id="reg-id" required>
-      </div>
-      <div class="form-group">
-        <label for="reg-name">Nombre Completo</label>
-        <input type="text" id="reg-name" required>
-      </div>
-      <div class="form-group">
-        <label for="reg-nationality">Nacionalidad</label>
-        <input type="text" id="reg-nationality" required>
-      </div>
-      <div class="form-group">
-        <label for="reg-email">Email</label>
-        <input type="email" id="reg-email" required>
-      </div>
-      <div class="form-group">
-        <label for="reg-phone">Teléfono</label>
-        <input type="text" id="reg-phone" required>
-      </div>
-      <div class="form-group">
-        <label for="reg-password">Contraseña</label>
-        <input type="password" id="reg-password" required>
-      </div>
-      <button type="submit">Registrarse</button>
-    </form>
-    <p>¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión aquí</a></p>
-  </section>
+                <form id="login-form" class="login-form">
+                    <!-- Campos de Login -->
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico *</label>
+                        <input type="email" id="email" name="email" required 
+                               placeholder="Ej: juan.perez@email.com">
+                        <span class="error-message" id="error-email"></span>
+                    </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 El Rincón del Carmen | Todos los derechos reservados</p>
-    <p>Contacto: <a href="mailto:info@rincondelcarmen.com">info@rincondelcarmen.com</a></p>
-    <p>Desarrollado por Kevin</p>
-  </footer>
+                    <div class="form-group">
+                        <label for="password">Contraseña *</label>
+                        <input type="password" id="password" name="password" required 
+                               placeholder="Ingresa tu contraseña">
+                        <span class="error-message" id="error-password"></span>
+                    </div>
+
+                    <!-- Botón de Login -->
+                    <button type="submit" class="btn btn-primary btn-large btn-login" id="btn-login">
+                        <span class="btn-text">Iniciar Sesión</span>
+                        <div class="btn-loading" style="display: none;">
+                            <div class="spinner"></div>
+                            <span>Verificando...</span>
+                        </div>
+                    </button>
+
+                    <!-- Enlace a Registro -->
+                    <div class="register-link">
+                        <p>¿No tienes una cuenta? <a href="/paginas/registro/registro.html" class="link">Regístrate aquí</a></p>
+                    </div>
+                    <!-- Enlace para Administradores -->
+                    <div class="admin-link">
+                        <p><a href="/paginas/admi/admi.html" class="link">🔐 Ingresar como Administrador</a></p>
+                     </div>
+                </form>
+
+                <!-- Mensaje de Bienvenida -->
+                <div id="welcome-message" class="welcome-message" style="display: none;">
+                    <div class="welcome-icon">🎉</div>
+                    <h3>¡Bienvenido de nuevo!</h3>
+                    <p id="welcome-user">Has iniciado sesión correctamente.</p>
+                    <div class="welcome-actions">
+                        <a href="../reservas/reservas.html" class="btn btn-primary">Ver Reservas</a>
+                        <a href="../../index.html" class="btn btn-secondary">Ir al Inicio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="../../imagenes/logo.png" alt="Hotel Logo" class="footer-logo">
+                    <p>Hotel el Rincón del Carmen<br>Donde cada estancia es especial</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="../../index.html">Inicio</a></li>
+                        <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                        <li><a href="../reservas/reservas.html">Reservas</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>📞 +57 300 123 4567</p>
+                    <p>✉️ info@rincondelcarmen.com</p>
+                    <p>📍 Calle 123 #45-67, Rincón del Carmen</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hotel el Rincón del Carmen. Todos los derechos reservados.</p>
+                <p>Desarrollado por Kevin</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
