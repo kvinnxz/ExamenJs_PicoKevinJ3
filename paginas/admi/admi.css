@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* LOGIN */
+.login-admin {
+  max-width: 400px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.login-admin h2 {
+  margin-bottom: 15px;
+}
+
+.login-admin input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.login-admin button {
+  width: 100%;
+  padding: 10px;
+  background: #2d89ef;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.login-admin .error {
+  color: red;
+  margin-top: 10px;
+}
+
+/* PANEL */
+.admin-panel header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2d89ef;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.admin-panel header h1 {
+  font-size: 20px;
+}
+
+.admin-panel header button {
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* SECCIONES */
+section {
+  background: #ffffff;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+section h2 {
+  margin-bottom: 15px;
+}
+
+#roomForm input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+.services {
+  margin: 10px 0;
+}
+
+.services label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#roomsList, #reservasList {
+  margin-top: 15px;
+}
+
+.room-item, .reserva-item {
+  background: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.room-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 8px;
+}
+
+.room-actions button, .reserva-actions button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .admin-panel header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .room-actions, .reserva-actions {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

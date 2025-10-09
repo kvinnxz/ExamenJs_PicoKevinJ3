@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración</title>
+  <link rel="stylesheet" href="admi.css">
+  <script src="admi.js" defer></script>
+</head>
+<body>
+
+  <!-- LOGIN ADMIN -->
+  <div class="login-admin" id="loginAdmin">
+    <h2>Acceso Administrador</h2>
+    <form id="adminLoginForm">
+      <input type="text" id="adminUser" placeholder="Usuario" required>
+      <input type="password" id="adminPass" placeholder="Contraseña" required>
+      <button type="submit">Ingresar</button>
+    </form>
+    <p id="loginError" class="error"></p>
+  </div>
+
+  <!-- PANEL ADMIN -->
+  <div class="admin-panel" id="adminPanel" style="display:none;">
+    <header>
+      <h1>Panel de Administración</h1>
+      <button id="logoutBtn">Cerrar sesión</button>
+    </header>
+
+    <!-- Gestión de Habitaciones -->
+    <section class="habitaciones-section">
+      <h2>Gestión de Habitaciones</h2>
+      <form id="roomForm">
+        <input type="text" id="roomName" placeholder="Nombre o número" required>
+        <input type="number" id="roomBeds" placeholder="Camas" required>
+        <input type="number" id="roomMaxPeople" placeholder="Personas Máx." required>
+        <input type="number" id="roomPrice" placeholder="Precio por noche" required>
+        <input type="text" id="roomImage" placeholder="URL imagen local" required>
+
+        <div class="services">
+          <label><input type="checkbox" value="Internet"> Internet</label>
+          <label><input type="checkbox" value="Minibar"> Minibar</label>
+          <label><input type="checkbox" value="Jacuzzi"> Jacuzzi</label>
+        </div>
+
+        <button type="submit">Guardar Habitación</button>
+      </form>
+
+      <div id="roomsList"></div>
+    </section>
+
+    <!-- Gestión de Reservas -->
+    <section class="reservas-section">
+      <h2>Gestión de Reservas</h2>
+      <div id="reservasList"></div>
+    </section>
+  </div>
+
+</body>
+</html>
