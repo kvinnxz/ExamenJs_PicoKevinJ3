@@ -1,144 +1,180 @@
 /* ==============================
-   General
-============================== */
-body {
+   RESET Y ESTILOS GENERALES
+=============================== */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+}
+
+body {
+  line-height: 1.6;
+  background-color: #fefefe; /* igual que index */
   color: #333;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* ==============================
-   Header / Navbar
-============================== */
+   NAVBAR
+=============================== */
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 50px;
-  background-color: #2C3E50;
+  padding: 1rem 3rem;
+  background-color: #1f1f1f; /* igual que index */
   color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .main-header .logo img {
   width: 150px;
-  height: auto;
 }
 
 .main-nav ul {
-  list-style: none;
   display: flex;
-  gap: 20px;
+  list-style: none;
+  gap: 2rem;
 }
 
-.main-nav ul li a {
-  text-decoration: none;
+.main-nav a {
   color: #fff;
   font-weight: 600;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
-.main-nav ul li a:hover,
-.main-nav ul li a.active {
-  color: #E67E22;
+.main-nav a:hover,
+.main-nav a.active {
+  color: #f39c12; /* hover igual que index */
 }
+
+@media (max-width: 768px) {
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
 /* ==============================
-   Sección Login
-============================== */
-.reservas {
-  max-width: 500px;
-  margin: 50px auto;
+   LOGIN Y REGISTRO
+=============================== */
+.login-section,
+.register-section {
+  max-width: 450px;
+  margin: 60px auto;
   padding: 30px;
-  background-color: #fff;
+  background-color: #fff; /* mismo blanco que index */
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
-.reservas h2 {
+h2 {
   text-align: center;
   margin-bottom: 25px;
-  font-size: 28px;
-  color: #2C3E50;
+  color: #2c3e50; /* igual que títulos de secciones en index */
 }
 
-.reservas form .form-group {
+form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
 }
 
-.reservas form label {
-  margin-bottom: 5px;
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  margin-bottom: 6px;
   font-weight: 600;
+  display: block;
 }
 
-.reservas form input {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
+input {
+  padding: 12px;
   border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 0.3s;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
 }
 
-.reservas form input:focus {
-  border-color: #E67E22;
+input:focus {
+  border-color: #1f1f1f; /* mismo color de navbar */
   outline: none;
 }
 
-.reservas form button {
-  width: 100%;
+button {
   padding: 12px;
-  margin-top: 10px;
-  background-color: #E67E22;
+  background-color: #f39c12; /* igual que los botones en hero */
   color: #fff;
   border: none;
   border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-top: 10px;
 }
 
-.reservas form button:hover {
-  background-color: #D35400;
+button:hover {
+  background-color: #d87c00; /* hover igual que hero */
+}
+
+/* ENLACES DE CAMBIO LOGIN / REGISTRO */
+.login-section p,
+.register-section p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.login-section p a,
+.register-section p a {
+  color: #1f1f1f; /* mismo color navbar/fondo oscuro */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.login-section p a:hover,
+.register-section p a:hover {
+  color: #f39c12;
 }
 
 /* ==============================
-   Footer
-============================== */
+   FOOTER
+=============================== */
 footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #2C3E50;
+  padding: 2rem 3rem;
+  background-color: #1f1f1f; /* igual navbar */
   color: #fff;
-  margin-top: 50px;
+  text-align: center;
 }
 
 footer a {
-  color: #E67E22;
-  text-decoration: none;
+  color: #f39c12;
 }
 
 footer a:hover {
-  text-decoration: underline;
+  color: #d87c00;
 }
+
 /* ==============================
-   Responsive
-============================== */
-@media (max-width: 600px) {
+   RESPONSIVE GENERAL
+=============================== */
+@media (max-width: 768px) {
   .main-header {
     flex-direction: column;
-    gap: 15px;
+    gap: 1rem;
   }
 
-  .main-nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .reservas {
-    margin: 30px 15px;
-    padding: 20px;
+  .login-section,
+  .register-section {
+    margin: 20px;
+    padding: 25px;
   }
 }

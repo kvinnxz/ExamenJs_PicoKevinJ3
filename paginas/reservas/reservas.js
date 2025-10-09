@@ -1,187 +1,123 @@
-// ======= Datos de ejemplo de habitaciones =======
-let habitaciones = [
+// Habitaciones disponibles (datos de ejemplo)
+const habitaciones = [
   {
-    id: "hab01",
-    nombre: "Suite Deluxe",
+    id: 'HAB1',
+    nombre: 'Habitación Estándar',
     camas: 2,
-    maxPersonas: 4,
-    servicios: ["Internet", "Minibar", "Jacuzzi"],
-    precioNoche: 250
+    maxPersonas: 3,
+    precioNoche: 150000,
+    servicios: ['Internet', 'Minibar'],
   },
   {
-    id: "hab02",
-    nombre: "Habitación Standard",
+    id: 'HAB2',
+    nombre: 'Suite Familiar',
+    camas: 3,
+    maxPersonas: 5,
+    precioNoche: 250000,
+    servicios: ['Internet', 'Jacuzzi', 'Minibar'],
+  },
+  {
+    id: 'HAB3',
+    nombre: 'Suite Lujo',
     camas: 1,
     maxPersonas: 2,
-    servicios: ["Internet", "Minibar"],
-    precioNoche: 120
-  },
-  {
-    id: "hab03",
-    nombre: "Suite Familiar",
-    camas: 3,
-    maxPersonas: 6,
-    servicios: ["Internet", "Minibar", "Jacuzzi"],
-    precioNoche: 300
+    precioNoche: 300000,
+    servicios: ['Jacuzzi', 'Internet', 'Minibar'],
   }
 ];
 
-// Guardar habitaciones en localStorage si no existen
-if (!localStorage.getItem("habitaciones")) {
-  localStorage.setItem("habitaciones", JSON.stringify(habitaciones));
-}
+// Verificar login
+const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
+const loginLink = document.getElementById('login-link');
+const logoutLink = document.getElementById('logout-link');
 
-// ======= Función para obtener reservas de LocalStorage =======
-function obtenerReservas() {
-  return JSON.parse(localStorage.getItem("reservas")) || [];
-}
-
-// ======= Función para guardar reservas =======
-function guardarReservas(reservas) {
-  localStorage.setItem("reservas", JSON.stringify(reservas));
-}
-
-// ======= Verificar si el usuario está logueado =======
-function usuarioLogueado() {
-  return JSON.parse(localStorage.getItem("usuarioLogueado"));
-}
-
-// ======= Verificar disponibilidad =======
-function estaDisponible(habitacionId, checkin, checkout) {
-  const reservas = obtenerReservas();
-  const checkInDate = new Date(checkin);
-  const checkOutDate = new Date(checkout);
-
-  return !reservas.some(res => {
-    if (res.habitacionId !== habitacionId) return false;
-    const resCheckIn = new Date(res.checkin);
-    const resCheckOut = new Date(res.checkout);
-    // Si hay solapamiento de fechas
-    return checkInDate < resCheckOut && checkOutDate > resCheckIn;
+if (usuarioActual) {
+  loginLink.classList.add('hidden');
+  logoutLink.classList.remove('hidden');
+  logoutLink.addEventListener('click', () => {
+    localStorage.removeItem('usuarioActual');
+    location.reload();
   });
 }
 
-// ======= Mostrar habitaciones disponibles =======
-function mostrarHabitacionesDisponibles(checkin, checkout, personas) {
-  const contenedor = document.getElementById("habitaciones-disponibles");
-  contenedor.innerHTML = ""; // limpiar
-  const habs = JSON.parse(localStorage.getItem("habitaciones")) || [];
+// Búsqueda de disponibilidad
+const form = document.getElementById('search-form');
+const roomsContainer = document.getElementById('rooms-container');
 
-  habs.forEach(hab => {
-    if (hab.maxPersonas >= personas && estaDisponible(hab.id, checkin, checkout)) {
-      const div = document.createElement("div");
-      div.classList.add("habitacion-card");
-      div.innerHTML = `
-        <h3>${hab.nombre}</h3>
-        <p>Camas: ${hab.camas} | Max Personas: ${hab.maxPersonas}</p>
-        <p>Servicios: ${hab.servicios.join(", ")}</p>
-        <p>Precio por noche: $${hab.precioNoche}</p>
-        <button class="btn-reservar" data-id="${hab.id}">Reservar</button>
-      `;
-      contenedor.appendChild(div);
-    }
-  });
-
-  // Si no hay disponibles
-  if (!contenedor.hasChildNodes()) {
-    contenedor.innerHTML = "<p>No hay habitaciones disponibles para esas fechas.</p>";
-  }
-
-  // Asignar evento a botones reservar
-  document.querySelectorAll(".btn-reservar").forEach(btn => {
-    btn.addEventListener("click", () => {
-      reservarHabitacion(btn.dataset.id, checkin, checkout, personas);
-    });
-  });
-}
-
-// ======= Función para reservar =======
-function reservarHabitacion(habitacionId, checkin, checkout, personas) {
-  const user = usuarioLogueado();
-  if (!user) {
-    alert("Debes iniciar sesión para reservar.");
-    return;
-  }
-
-  if (!estaDisponible(habitacionId, checkin, checkout)) {
-    alert("Lo sentimos, la habitación ya no está disponible.");
-    return;
-  }
-
-  const reservas = obtenerReservas();
-  reservas.push({
-    usuarioId: user.id,
-    habitacionId,
-    checkin,
-    checkout,
-    personas
-  });
-
-  guardarReservas(reservas);
-  alert("Reserva realizada con éxito!");
-  mostrarHabitacionesDisponibles(checkin, checkout, personas);
-}
-
-// ======= Manejar formulario =======
-document.getElementById("reserva-form").addEventListener("submit", e => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const checkin = document.getElementById("checkin").value;
-  const checkout = document.getElementById("checkout").value;
-  const personas = parseInt(document.getElementById("personas").value, 10);
+  const checkin = new Date(document.getElementById('checkin').value);
+  const checkout = new Date(document.getElementById('checkout').value);
+  const personas = parseInt(document.getElementById('personas').value);
 
-  if (new Date(checkin) >= new Date(checkout)) {
-    alert("La fecha de salida debe ser posterior a la de llegada.");
+  if (checkout <= checkin) {
+    alert('La fecha de salida debe ser posterior a la de entrada.');
     return;
   }
 
-  mostrarHabitacionesDisponibles(checkin, checkout, personas);
+  const noches = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
+
+  const disponibles = habitaciones.filter(h => h.maxPersonas >= personas);
+
+  roomsContainer.innerHTML = '';
+
+  disponibles.forEach(h => {
+    const total = h.precioNoche * noches;
+    const card = document.createElement('div');
+    card.className = 'room-card';
+    card.innerHTML = `
+      <h3>${h.nombre}</h3>
+      <p>${h.camas} camas • Máx. ${h.maxPersonas} personas</p>
+      <ul>
+        ${h.servicios.map(s => `<li>${s}</li>`).join('')}
+      </ul>
+      <p class="price">Total: $${total.toLocaleString()}</p>
+      <button class="reserve-btn" data-id="${h.id}" data-total="${total}" data-checkin="${checkin.toISOString()}" data-checkout="${checkout.toISOString()}">Reservar</button>
+    `;
+    roomsContainer.appendChild(card);
+  });
+
+  document.querySelectorAll('.reserve-btn').forEach(btn => {
+    btn.addEventListener('click', reservarHabitacion);
+  });
 });
 
-// ======= Función para mostrar reservas del usuario y cancelarlas =======
-function mostrarReservasUsuario() {
-  const user = usuarioLogueado();
-  if (!user) return;
+// Reservar habitación
+function reservarHabitacion(e) {
+  if (!usuarioActual) {
+    alert('Debes iniciar sesión para reservar.');
+    window.location.href = 'login.html';
+    return;
+  }
 
-  const reservas = obtenerReservas().filter(r => r.usuarioId === user.id);
-  const contenedor = document.getElementById("habitaciones-disponibles");
-  contenedor.innerHTML = "<h3>Mis Reservas:</h3>";
+  const btn = e.target;
+  const habitacionId = btn.dataset.id;
+  const total = parseInt(btn.dataset.total);
+  const checkin = new Date(btn.dataset.checkin);
+  const checkout = new Date(btn.dataset.checkout);
 
-  reservas.forEach(res => {
-    const habs = JSON.parse(localStorage.getItem("habitaciones")) || [];
-    const hab = habs.find(h => h.id === res.habitacionId);
+  let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
 
-    const div = document.createElement("div");
-    div.classList.add("habitacion-card");
-    div.innerHTML = `
-      <h3>${hab.nombre}</h3>
-      <p>Checkin: ${res.checkin} | Checkout: ${res.checkout}</p>
-      <p>Personas: ${res.personas}</p>
-      <button class="btn-cancelar" data-checkin="${res.checkin}" data-checkout="${res.checkout}" data-id="${res.habitacionId}">Cancelar Reserva</button>
-    `;
-    contenedor.appendChild(div);
+  const existeSolape = reservas.some(r => {
+    return r.habitacionId === habitacionId &&
+      ((checkin >= new Date(r.fechaInicio) && checkin < new Date(r.fechaFin)) ||
+       (checkout > new Date(r.fechaInicio) && checkout <= new Date(r.fechaFin)));
   });
 
-  // Botones de cancelación
-  document.querySelectorAll(".btn-cancelar").forEach(btn => {
-    btn.addEventListener("click", () => {
-      cancelarReserva(user.id, btn.dataset.id, btn.dataset.checkin, btn.dataset.checkout);
-    });
-  });
-}
+  if (existeSolape) {
+    alert('Esta habitación ya fue reservada en ese rango de fechas.');
+    return;
+  }
 
-// ======= Cancelar reserva =======
-function cancelarReserva(usuarioId, habitacionId, checkin, checkout) {
-  let reservas = obtenerReservas();
-  reservas = reservas.filter(r => {
-    return !(r.usuarioId === usuarioId && r.habitacionId === habitacionId && r.checkin === checkin && r.checkout === checkout);
-  });
-  guardarReservas(reservas);
-  alert("Reserva cancelada correctamente.");
-  mostrarReservasUsuario();
-}
+  const nuevaReserva = {
+    usuarioId: usuarioActual.identificacion,
+    habitacionId,
+    fechaInicio: checkin.toISOString(),
+    fechaFin: checkout.toISOString(),
+    total
+  };
 
-// ======= Inicialización =======
-// Si el usuario está logueado, mostrar sus reservas
-if (usuarioLogueado()) {
-  mostrarReservasUsuario();
+  reservas.push(nuevaReserva);
+  localStorage.setItem('reservas', JSON.stringify(reservas));
+  alert('Reserva realizada con éxito.');
 }

@@ -1,206 +1,175 @@
-/* ==========================
-   Estilos generales
-========================== */
-body {
-  font-family: Arial, sans-serif;
+/* Estilos generales */
+* {
   margin: 0;
-  background: linear-gradient(to bottom right, #e0f7fa, #b2ebf2);
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  background-color: #f2f2f2;
+  color: #333;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* ==========================
-   Navbar
-========================== */
-.main-header {
+/* Navbar */
+.navbar {
+  background-color: #333;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #004d40;
+  flex-wrap: wrap;
 }
 
-.main-header .logo img {
-  height: 50px;
+.navbar .logo {
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
-.main-nav ul {
-  list-style: none;
+.nav-links {
   display: flex;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
+  list-style: none;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
 }
 
-.main-nav ul li a {
+.nav-links a {
   color: #fff;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
 }
 
-.main-nav ul li a:hover,
-.main-nav ul li a.active {
-  color: #ffd600;
+.nav-links a.active {
+  text-decoration: underline;
 }
 
-/* ==========================
-   Sección de reservas
-========================== */
-.reservas {
-  max-width: 1200px;
-  margin: 3rem auto;
-  padding: 0 1rem;
+.hidden {
+  display: none;
+}
+
+/* Sección de búsqueda */
+.search-section {
+  padding: 2rem 1rem;
+  background-color: #e0e0e0;
   text-align: center;
 }
 
-.reservas h2 {
-  font-size: 2.2rem;
-  color: #004d40;
-  margin-bottom: 0.5rem;
+.search-section h1 {
+  margin-bottom: 1rem;
 }
 
-.reservas p {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  color: #333;
-}
-
-/* Formulario */
-#reserva-form {
+#search-form {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  min-width: 200px;
-}
-
-.form-group label {
-  font-weight: bold;
-  margin-bottom: 0.3rem;
+  min-width: 150px;
+  flex: 1;
 }
 
 .form-group input {
-  padding: 0.8rem;
-  border-radius: 8px;
-  border: 1px solid #004d40;
-  outline: none;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+  padding: 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }
 
-.form-group input:focus {
-  border-color: #ffd600;
-}
-
-#reserva-form button {
-  padding: 1rem 2rem;
-  background-color: #004d40;
-  color: #ffd600;
-  font-weight: bold;
+.btn {
+  background-color: #333;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  border-radius: 5px;
+  min-width: 150px;
 }
 
-#reserva-form button:hover {
-  background-color: #00332b;
-  transform: scale(1.05);
+.btn:hover {
+  background-color: #555;
 }
 
-/* ==========================
-   Tarjetas de habitaciones
-========================== */
-.habitaciones-lista {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
+/* Sección de habitaciones */
+.rooms-section {
+  padding: 2rem 1rem;
+  flex: 1;
 }
 
-.habitacion-card {
-  background-color: #ffffffdd;
-  padding: 1.5rem;
-  border-radius: 12px;
-  width: 280px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  transition: transform 0.3s, box-shadow 0.3s;
+.rooms-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.room-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-between;
 }
 
-.habitacion-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-}
-
-.habitacion-card h3 {
-  color: #004d40;
+.room-card h3 {
   margin-bottom: 0.5rem;
 }
 
-.habitacion-card p {
-  font-size: 1rem;
+.room-card ul {
+  list-style: none;
+  margin-bottom: 0.5rem;
+  padding-left: 0;
 }
 
-/* Botones de reservar/cancelar */
-.habitacion-card button {
-  padding: 0.8rem 1.5rem;
-  background-color: #004d40;
-  color: #ffd600;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.habitacion-card button:hover {
-  background-color: #00332b;
-  transform: scale(1.05);
-}
-
-/* ==========================
-   Footer
-========================== */
-footer {
-  background-color: #004d40;
-  color: #fff;
-  text-align: center;
-  padding: 1rem 0;
+.room-card ul li {
   font-size: 0.9rem;
+  margin-bottom: 0.3rem;
 }
 
-footer a {
-  color: #ffd600;
-  text-decoration: none;
+.room-card .price {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
-footer a:hover {
-  color: #ffb300;
+.room-card .reserve-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-/* ==========================
-   Responsive
-========================== */
-@media (max-width: 900px) {
-  #reserva-form {
-    flex-direction: column;
-    align-items: center;
+.room-card .reserve-btn:hover {
+  background-color: #555;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+  margin-top: auto;
+}
+
+/* Responsive adicional */
+@media (max-width: 600px) {
+  .form-group {
+    min-width: 100%;
   }
 
-  .habitaciones-lista {
-    flex-direction: column;
-    align-items: center;
+  .btn {
+    width: 100%;
   }
 }
