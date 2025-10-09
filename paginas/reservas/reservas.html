@@ -5,50 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reservas - Hotel</title>
   <link rel="stylesheet" href="reservas.css">
-  <script src="reservas.js"></script>
+  <script src="reservas.js" defer></script>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Hotel</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="reservas.html" class="active">Reservas</a></li>
-      <li><a href="login.html" id="login-link">Login</a></li>
-      <li><a href="#" id="logout-link" class="hidden">Cerrar sesión</a></li>
-    </ul>
-  </nav>
+  <!-- NAVBAR -->
+  <header class="main-header">
+    <div class="logo">
+      <a href="../../index.html"><img src="../../imagenes/logo.png" alt="Hotel"></a>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="../../index.html">Inicio</a></li>
+        <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+        <li><a href="reservas.html" class="active">Reservas</a></li>
+        <li><a href="../login/login.html">Login</a></li>
+        <li><a href="../contacto/contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Formulario de búsqueda -->
-  <section class="search-section">
-    <h1>Consulta de disponibilidad</h1>
-    <form id="search-form">
+  <!-- FORMULARIO DE BÚSQUEDA -->
+  <section class="reserva-busqueda">
+    <h2>Consulta de disponibilidad</h2>
+    <form id="buscar-form">
       <div class="form-group">
-        <label for="checkin">Fecha de entrada</label>
-        <input type="date" id="checkin" required>
+        <label for="fecha-inicio">Fecha de inicio</label>
+        <input type="date" id="fecha-inicio" required>
       </div>
       <div class="form-group">
-        <label for="checkout">Fecha de salida</label>
-        <input type="date" id="checkout" required>
+        <label for="fecha-fin">Fecha de fin</label>
+        <input type="date" id="fecha-fin" required>
       </div>
       <div class="form-group">
-        <label for="personas">Número de personas</label>
+        <label for="personas">Personas</label>
         <input type="number" id="personas" min="1" required>
       </div>
-      <button type="submit" class="btn">Buscar habitaciones</button>
+      <button type="submit" class="btn-buscar">Buscar</button>
     </form>
   </section>
 
-  <!-- Habitaciones disponibles -->
-  <section class="rooms-section">
+  <!-- HABITACIONES DISPONIBLES -->
+  <section class="habitaciones-disponibles">
     <h2>Habitaciones disponibles</h2>
-    <div id="rooms-container" class="rooms-container"></div>
+    <div id="available-rooms"></div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2025 Hotel. Todos los derechos reservados.</p>
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Hotel. Todos los derechos reservados.</p>
   </footer>
 
 </body>

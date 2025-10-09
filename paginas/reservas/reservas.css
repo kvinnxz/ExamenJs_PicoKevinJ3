@@ -1,68 +1,88 @@
-/* Estilos generales */
+/* ==============================
+   RESET Y ESTILOS BASE
+============================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background-color: #f2f2f2;
+  line-height: 1.6;
+  background-color: #f0f0f0;
   color: #333;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
-/* Navbar */
-.navbar {
-  background-color: #333;
-  color: #fff;
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ==============================
+   NAVBAR
+============================== */
+.main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  flex-wrap: wrap;
+  padding: 1rem 3rem;
+  background-color: #1f1f1f;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.navbar .logo {
-  font-weight: bold;
-  font-size: 1.2rem;
+.main-header .logo img {
+  width: 150px;
 }
 
-.nav-links {
+.main-nav ul {
   display: flex;
   list-style: none;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
+  gap: 2rem;
 }
 
-.nav-links a {
+.main-nav a {
   color: #fff;
-  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
-.nav-links a.active {
-  text-decoration: underline;
+.main-nav a:hover,
+.main-nav a.active {
+  color: #f39c12;
 }
 
-.hidden {
-  display: none;
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
-/* Sección de búsqueda */
-.search-section {
+/* ==============================
+   FORMULARIO DE BÚSQUEDA
+============================== */
+.reserva-busqueda {
+  background-color: #f9f9f9;
   padding: 2rem 1rem;
-  background-color: #e0e0e0;
   text-align: center;
 }
 
-.search-section h1 {
-  margin-bottom: 1rem;
+.reserva-busqueda h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
 }
 
-#search-form {
+#buscar-form {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -74,102 +94,140 @@ body {
 .form-group {
   display: flex;
   flex-direction: column;
-  min-width: 150px;
   flex: 1;
+  min-width: 180px;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 .form-group input {
   padding: 0.5rem;
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.btn {
-  background-color: #333;
+.btn-buscar {
+  background-color: #f39c12;
   color: #fff;
+  padding: 0.8rem 1.5rem;
   border: none;
-  padding: 0.7rem 1.5rem;
-  cursor: pointer;
   border-radius: 5px;
-  min-width: 150px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: #555;
+.btn-buscar:hover {
+  background-color: #d87c00;
 }
 
-/* Sección de habitaciones */
-.rooms-section {
+/* ==============================
+   HABITACIONES DISPONIBLES
+============================== */
+.habitaciones-disponibles {
   padding: 2rem 1rem;
-  flex: 1;
+  text-align: center;
 }
 
-.rooms-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+.habitaciones-disponibles h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+#available-rooms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
-  margin-top: 1rem;
 }
 
 .room-card {
-  background-color: #fff;
+  background: #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   padding: 1rem;
+  max-width: 300px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.room-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.room-card:hover {
+  transform: scale(1.05);
 }
 
 .room-card h3 {
-  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
 }
 
-.room-card ul {
-  list-style: none;
-  margin-bottom: 0.5rem;
-  padding-left: 0;
+.room-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.2rem 0;
 }
 
-.room-card ul li {
-  font-size: 0.9rem;
-  margin-bottom: 0.3rem;
-}
-
-.room-card .price {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.room-card .reserve-btn {
-  background-color: #333;
+.reservar-btn {
+  margin-top: 0.8rem;
+  background-color: #1f1f1f;
   color: #fff;
   border: none;
-  padding: 0.5rem;
+  padding: 0.6rem 1rem;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-.room-card .reserve-btn:hover {
-  background-color: #555;
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #333;
+.reservar-btn:hover {
+  background-color: #f39c12;
   color: #fff;
-  margin-top: auto;
 }
 
-/* Responsive adicional */
-@media (max-width: 600px) {
-  .form-group {
-    min-width: 100%;
+/* ==============================
+   FOOTER
+============================== */
+footer {
+  padding: 2rem 3rem;
+  background-color: #1f1f1f;
+  color: #fff;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+footer a {
+  color: #f39c12;
+}
+
+footer a:hover {
+  color: #d87c00;
+}
+
+/* ==============================
+   RESPONSIVE GENERAL
+============================== */
+@media (max-width: 768px) {
+  #buscar-form {
+    flex-direction: column;
+    align-items: center;
   }
 
-  .btn {
-    width: 100%;
+  .room-card {
+    width: 90%;
   }
 }
