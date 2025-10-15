@@ -3,91 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel el Rincón del Carmen - Inicio</title>
+    <title>Quejas y Reclamos - Hotel el Rincón del Carmen</title>
     <link rel="stylesheet" href="quejas.css">
-    <script src="quejas.js"defer></script>
+    <script src="quejas.js" defer></script>
 </head>
 <body>
-    <!-- NAVBAR  -->
+    <!-- NAVBAR -->
     <header class="main-header">
         <div class="logo">
-            <img src="/imagenes/logo.png" alt="Hotel el Rincón del Carmen">
+            <a href="../../index.html"><img src="../../imagenes/logo.png" alt="Hotel el Rincón del Carmen"></a>
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="/index.html">Inicio</a></li>
-                <li><a href="/paginas/habitaciones/habitaciones.html">Habitaciones</a></li>
-                <li><a href="/paginas/reservas/reservas.html">Reservas</a></li>
-                <li><a href="/paginas/login/login.html">Login</a></li>
-                <li><a href="/paginas/registro/registro.html">Registro</a></li>
-                <li><a href="/paginas/contacto/contacto.html">Contacto</a></li>
+                <li><a href="../../index.html">Inicio</a></li>
+                <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                <li><a href="../reservas/reservas.html">Reservas</a></li>
                 <li><a href="quejas.html" class="active">Quejas y Reclamos</a></li>
+                <li id="nav-usuario">
+                    <a href="#" id="user-menu">
+                        <span id="user-name"></span> ▼
+                    </a>
+                    <div class="user-dropdown">
+                        <a href="../reservas/reservas.html#mis-reservas">Mis Reservas</a>
+                        <a href="quejas.html">Mis Quejas</a>
+                        <a href="#" id="cerrar-sesion">Cerrar Sesión</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO SECTION  -->
-    <section class="hero">
-        <div class="hero-video-container">
-            <video autoplay muted loop class="hero-video">
-                <source src="imagenes/hero-video.mp4" type="video/mp4">
-                <!-- Fallback imagen -->
-            </video>
-            <div class="hero-overlay"></div>
-        </div>
+    <!-- HERO SECTION -->
+    <section class="hero-quejas">
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Quejas y Reclamos</h1>
-            <p class="hero-subtitle">Si tuviste algun problema con algunos de nuestros servicios, <br>
-                por favor escribenos como podemos mejorar paraa satisfacer <br>
-                tu experiencia en nuestra pagina</p>
+            <h1>Quejas y Reclamos</h1>
+            <p>Tu opinión es importante para nosotros</p>
         </div>
     </section>
 
+    <!-- BANNER DE USUARIO -->
+    <div id="user-banner" class="user-banner">
+        <div class="container">
+            <span>👋 Hola, <strong id="banner-user-name"></strong></span>
+            <span>Tienes <strong id="quejas-count">0</strong> queja(s) activa(s)</span>
+        </div>
+    </div>
 
- <!-- Formulario de contacto -->
-                 <div class="contacto-formulario">
-                    <h3>Envíanos un mensaje</h3>
-                    <form id="contact-form">
+    <!-- CREAR NUEVA QUEJA -->
+    <section class="nueva-queja-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Radicar Nueva Queja o Reclamo</h2>
+                <button id="toggle-form-btn" class="btn btn-primary">+ Nueva Queja/Reclamo</button>
+            </div>
+
+            <div id="form-container" class="form-container" style="display: none;">
+                <form id="quejas-form" class="quejas-form">
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Nombre completo *</label>
-                            <input type="text" id="name" required>
+                            <label for="reserva-select">Reserva Asociada *</label>
+                            <select id="reserva-select" required>
+                                <option value="">Seleccione una reserva</option>
+                            </select>
+                            <span class="error-message" id="error-reserva"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Correo electrónico *</label>
-                            <input type="email" id="email" required>
+                            <label for="tipo-select">Tipo *</label>
+                            <select id="tipo-select" required>
+                                <option value="">Seleccione el tipo</option>
+                                <option value="Queja">Queja</option>
+                                <option value="Reclamo">Reclamo</option>
+                            </select>
+                            <span class="error-message" id="error-tipo"></span>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="subject">Asunto *</label>
-                            <input type="text" id="subject" required>
+                    <div class="form-group">
+                        <label for="asunto-input">Asunto *</label>
+                        <input type="text" id="asunto-input" placeholder="Ej: Problema con aire acondicionado" required maxlength="100">
+                        <span class="error-message" id="error-asunto"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descripcion-textarea">Descripción Detallada *</label>
+                        <textarea id="descripcion-textarea" rows="5" placeholder="Describa detalladamente su queja o reclamo..." required maxlength="500"></textarea>
+                        <div class="char-counter">
+                            <span id="char-count">0</span>/500 caracteres
                         </div>
+                        <span class="error-message" id="error-descripcion"></span>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="message">Mensaje *</label>
-                            <textarea id="message" rows="5" required></textarea>
-                        </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">📝 Radicar Queja/Reclamo</button>
+                        <button type="button" class="btn btn-secondary" id="cancelar-btn">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
-                        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-                    </form>
-                    <div id="contact-message" class="message"></div>
+    <!-- MIS QUEJAS Y RECLAMOS -->
+    <section class="mis-quejas-section">
+        <div class="container">
+            <h2>Mis Quejas y Reclamos</h2>
+
+            <!-- Filtros -->
+            <div class="filtros-quejas">
+                <select id="estado-filter">
+                    <option value="todas">Todas</option>
+                    <option value="pendiente">Pendientes</option>
+                    <option value="resuelto">Resueltas</option>
+                    <option value="rechazado">Rechazadas</option>
+                </select>
+
+                <select id="tipo-filter">
+                    <option value="todas">Todos los tipos</option>
+                    <option value="Queja">Quejas</option>
+                    <option value="Reclamo">Reclamos</option>
+                </select>
+            </div>
+
+            <!-- Lista de quejas -->
+            <div id="quejas-lista" class="quejas-lista">
+                <!-- Las quejas se cargan dinámicamente -->
+            </div>
+
+            <!-- Sin quejas -->
+            <div id="sin-quejas" class="sin-resultados" style="display: none;">
+                <div class="sin-resultados-icon">📭</div>
+                <h3>No tienes quejas o reclamos</h3>
+                <p>Cuando necesites reportar algo, puedes hacerlo desde aquí.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DE DETALLE -->
+    <div id="modal-detalle" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Detalle de Queja/Reclamo</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="detalle-body">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cerrar-detalle-btn">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN ELIMINAR -->
+    <div id="modal-eliminar" class="modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h3>⚠️ Confirmar Eliminación</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar esta queja/reclamo?</p>
+                <p><strong>Esta acción no se puede deshacer.</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelar-eliminar-btn">Cancelar</button>
+                <button class="btn btn-danger" id="confirmar-eliminar-btn">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- INFORMACIÓN ADICIONAL -->
+    <section class="info-quejas">
+        <div class="container">
+            <h2>¿Cómo funciona?</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">📝</div>
+                    <h3>1. Radica tu Queja</h3>
+                    <p>Completa el formulario con todos los detalles necesarios</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">⏳</div>
+                    <h3>2. En Revisión</h3>
+                    <p>Nuestro equipo revisará tu caso en menos de 48 horas</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">✅</div>
+                    <h3>3. Respuesta</h3>
+                    <p>Recibirás una respuesta detallada del equipo administrativo</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🔄</div>
+                    <h3>4. Seguimiento</h3>
+                    <p>Puedes ver el estado de tu queja en cualquier momento</p>
                 </div>
             </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <img src="/imagenes/logo.png" alt="Hotel Logo" class="footer-logo">
+                    <img src="../../imagenes/logo.png" alt="Hotel Logo" class="footer-logo">
                     <p>Hotel el Rincón del Carmen<br>Donde cada estancia es especial</p>
                 </div>
                 <div class="footer-section">
                     <h4>Enlaces Rápidos</h4>
                     <ul>
-                        <li><a href="/index.html">Inicio</a></li>
-                        <li><a href="/paginas/habitaciones/habitaciones.html">Habitaciones</a></li>
-                        <li><a href="/paginas/reservas/reservas.html">Reservas</a></li>
-                        <li><a href="/paginas/contacto/contacto.html">Contacto</a></li>
+                        <li><a href="../../index.html">Inicio</a></li>
+                        <li><a href="../habitaciones/habitaciones.html">Habitaciones</a></li>
+                        <li><a href="../reservas/reservas.html">Reservas</a></li>
+                        <li><a href="../contacto/contacto.html">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -103,6 +232,5 @@
             </div>
         </div>
     </footer>
-
 </body>
 </html>

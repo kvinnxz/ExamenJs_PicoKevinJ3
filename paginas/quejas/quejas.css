@@ -21,7 +21,7 @@ body {
 }
 
 /* ==============================
-   NAVBAR (Mismo estilo)
+   NAVBAR
 =============================== */
 .main-header {
     display: flex;
@@ -32,7 +32,7 @@ body {
     color: #fff;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .main-header .logo img {
@@ -42,95 +42,564 @@ body {
 .main-nav ul {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
+    align-items: center;
 }
 
 .main-nav a {
     color: #fff;
     font-weight: 600;
     transition: color 0.3s ease;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 .main-nav a:hover,
 .main-nav a.active {
     color: #f39c12;
+    background-color: rgba(243, 156, 18, 0.1);
 }
 
-/* Formulario de contacto */
-.contacto-formulario {
+#nav-usuario {
+    position: relative;
+}
+
+#user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
     background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    min-width: 180px;
+    display: none;
+    z-index: 1001;
 }
 
-.contacto-formulario h3 {
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
+.user-dropdown a {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+
+.user-dropdown a:hover {
+    background-color: #f8f9fa;
+}
+
+#nav-usuario:hover .user-dropdown {
+    display: block;
+}
+
+/* ==============================
+   HERO SECTION
+=============================== */
+.hero-quejas {
+    position: relative;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(31, 31, 31, 0.7), rgba(31, 31, 31, 0.7)), 
+                url('../../imagenes/hero-quejas.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
     text-align: center;
 }
 
-.form-group {
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+}
+
+.hero-quejas .hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-quejas .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-quejas .hero-content p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* ==============================
+   BANNER DE USUARIO
+=============================== */
+.user-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.user-banner .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* ==============================
+   SECCIÓN NUEVA QUEJA
+=============================== */
+.nueva-queja-section {
+    padding: 3rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+}
+
+.form-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+.quejas-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
 .form-group label {
-    display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
     color: #2c3e50;
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
-    width: 100%;
     padding: 0.8rem;
     border: 2px solid #e0e0e0;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: #f39c12;
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
 }
 
-/* Botón */
+.char-counter {
+    text-align: right;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.3rem;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    display: none;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* ==============================
+   BOTONES
+=============================== */
 .btn {
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 1.5rem;
     background-color: #f39c12;
     color: #fff;
     font-weight: bold;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
 }
 
 .btn:hover {
     background-color: #d87c00;
+    transform: translateY(-2px);
 }
 
 .btn-primary {
     background-color: #f39c12;
 }
 
-/* Mensaje de confirmación */
-.message {
+.btn-secondary {
+    background-color: #95a5a6;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* ==============================
+   MIS QUEJAS
+=============================== */
+.mis-quejas-section {
+    padding: 3rem 2rem;
+    background-color: #fff;
+}
+
+.mis-quejas-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.filtros-quejas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filtros-quejas select {
+    padding: 0.6rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+
+.quejas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.queja-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-left: 4px solid #f39c12;
+    transition: transform 0.3s ease;
+}
+
+.queja-card:hover {
+    transform: translateX(5px);
+}
+
+.queja-card.pendiente {
+    border-left-color: #f39c12;
+}
+
+.queja-card.resuelto {
+    border-left-color: #27ae60;
+}
+
+.queja-card.rechazado {
+    border-left-color: #e74c3c;
+}
+
+.queja-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.queja-titulo {
+    flex: 1;
+}
+
+.queja-titulo h3 {
+    color: #2c3e50;
+    margin-bottom: 0.3rem;
+}
+
+.queja-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    flex-wrap: wrap;
+}
+
+.queja-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.estado-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.estado-badge.pendiente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.estado-badge.resuelto {
+    background: #d4edda;
+    color: #155724;
+}
+
+.estado-badge.rechazado {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.tipo-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    background: #e9ecef;
+    color: #495057;
+}
+
+.queja-descripcion {
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.queja-respuesta {
     margin-top: 1rem;
     padding: 1rem;
-    border-radius: 5px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 3px solid #3498db;
+}
+
+.queja-respuesta h4 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.queja-respuesta p {
+    color: #555;
+    margin: 0;
+}
+
+/* ==============================
+   SIN RESULTADOS
+=============================== */
+.sin-resultados {
     text-align: center;
+    padding: 4rem 2rem;
+    color: #7f8c8d;
+}
+
+.sin-resultados-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.sin-resultados h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+/* ==============================
+   MODALES
+=============================== */
+.modal {
     display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
 }
 
-.message.show {
-    display: block;
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: modalAppear 0.3s ease;
 }
 
+.modal-small {
+    max-width: 400px;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #eee;
+    background: #f8f9fa;
+    border-radius: 15px 15px 0 0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: #e74c3c;
+}
+
+.modal-body {
+    padding: 2rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+    border-radius: 0 0 15px 15px;
+}
+
+/* ==============================
+   INFO QUEJAS
+=============================== */
+.info-quejas {
+    padding: 3rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.info-quejas h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.info-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.info-card p {
+    color: #555;
+}
 
 /* ==============================
    FOOTER
@@ -143,7 +612,7 @@ footer {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -164,6 +633,11 @@ footer {
 
 .footer-section ul li {
     margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .footer-section ul li a:hover {
@@ -194,26 +668,37 @@ footer {
         text-align: center;
     }
 
-    .hero-contacto .hero-content h1 {
+    .section-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .queja-header {
+        flex-direction: column;
+    }
+
+    .queja-actions {
+        width: 100%;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-quejas .hero-content h1 {
         font-size: 2rem;
     }
 
-    .hero-contacto .hero-content p {
-        font-size: 1rem;
-    }
-
-    .contacto-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .contacto-info,
-    .contacto-formulario {
-        padding: 1.5rem;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
+    .nueva-queja-section,
+    .mis-quejas-section,
+    .info-quejas {
+        padding: 2rem 1rem;
     }
 }
