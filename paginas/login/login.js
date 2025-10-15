@@ -217,25 +217,33 @@ class SistemaLogin {
         return usuario;
     }
 
-    iniciarSesionUsuario(usuario = false) {
+iniciarSesionUsuario(usuario) {
+    console.log('💾 Guardando sesión para:', usuario);
+    
     // Crear sesión
     const sesion = {
-        usuario: { // Guardamos todo el usuario, no solo algunos campos
+        usuario: {
             id: usuario.id,
             nombre: usuario.nombre,
             email: usuario.email,
             nacionalidad: usuario.nacionalidad,
-            rol: usuario.rol 
+            rol: usuario.rol || 'usuario'
         },
         timestamp: new Date().toISOString(),
+        expira: this.calcularExpiracion(1)
     };
 
     // Guardar sesión
-    localStorage.setItem('sesionActivaHotel', JSON.stringify(sesion));
-    localStorage.setItem('usuarioActivo', JSON.stringify(usuario));
-
-    console.log('Sesión iniciada:', sesion);
-  }
+    try {
+        localStorage.setItem('sesionActivaHotel', JSON.stringify(sesion));
+        localStorage.setItem('usuarioActivo', JSON.stringify(usuario));
+        
+        console.log('✅ Sesión guardada exitosamente');
+        console.log('📋 Verificación:', localStorage.getItem('sesionActivaHotel'));
+    } catch (error) {
+        console.error('❌ Error al guardar sesión:', error);
+    }
+}
 
     calcularExpiracion(dias) {
         const fecha = new Date();

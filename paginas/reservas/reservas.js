@@ -134,30 +134,41 @@ class SistemaReservas {
     }
 
     // ========== AUTENTICACIÓN ==========
+obtenerUsuarioActual() {
+    console.log('🔍 Verificando sesión activa...');
+    
+    const sesionGuardada = localStorage.getItem('sesionActivaHotel');
+    
+    if (!sesionGuardada) {
+        console.log('❌ No hay sesión guardada');
+        return null;
+    }
 
-    obtenerUsuarioActual() {
-        const sesionGuardada = localStorage.getItem('sesionActivaHotel');
+    try {
+        const sesion = JSON.parse(sesionGuardada);
+        console.log('📋 Sesión encontrada:', sesion);
         
-        if (!sesionGuardada) return null;
+        const ahora = new Date();
+        const expiracion = new Date(sesion.expira);
 
-        try {
-            const sesion = JSON.parse(sesionGuardada);
-            const ahora = new Date();
-            const expiracion = new Date(sesion.expira);
+        console.log('⏰ Ahora:', ahora);
+        console.log('⏰ Expira:', expiracion);
 
-            if (ahora < expiracion) {
-                return sesion.usuario;
-            } else {
-                // Sesión expirada
-                localStorage.removeItem('sesionActivaHotel');
-                localStorage.removeItem('usuarioActivo');
-                return null;
-            }
-        } catch (error) {
-            console.error('Error al obtener usuario:', error);
+        if (ahora < expiracion) {
+            console.log('✅ Sesión válida, usuario:', sesion.usuario);
+            return sesion.usuario;
+        } else {
+            console.log('⚠️ Sesión expirada');
+            // Sesión expirada
+            localStorage.removeItem('sesionActivaHotel');
+            localStorage.removeItem('usuarioActivo');
             return null;
         }
+    } catch (error) {
+        console.error('❌ Error al obtener usuario:', error);
+        return null;
     }
+}
 
     verificarAutenticacion() {
         this.usuarioActual = this.obtenerUsuarioActual();
