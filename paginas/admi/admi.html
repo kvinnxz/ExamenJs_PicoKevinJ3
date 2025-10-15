@@ -63,6 +63,7 @@
             <div class="tabs">
                 <button class="tab-btn active" data-tab="habitaciones">Habitaciones</button>
                 <button class="tab-btn" data-tab="reservas">Reservas</button>
+                <button class="tab-btn" data-tab="quejas" > Quejas y Reclamos</button>
             </div>
 
             <!-- Habitaciones Tab -->
@@ -89,7 +90,36 @@
                 <div id="bookings-list" class="cards-grid"></div>
             </div>
         </div>
+        <div id="quejas" class="tab-content">
+            <div class=" section-header">
+                <h2>gESTION DE QUEJAS Y RECLAMOS</h2>
+                <div class="filters">
+                    <select id="quejas-estado-filter">
+                        <option value="todas">Todas</option>
+                        <option value="pendiente">pendiente</option>
+                        <option value="resuelto">resuelto</option>
+                        <option value="rechazado">rechazado</option>
+                    </select>
+                    <select id="quejas-tipo-filter">
+                        <option value="todas">Todas</option>
+                        <option value="queja">queja</option>
+                        <option value="reclamo">reclamo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
+        <div class="stats-grid" style="margin-bottom: 20px ;">
+            <div class="stat-card">
+                <h3> Total quejas/reclamos</h3>
+                <span id="total-quejas">0</span>
+            </div>
+            <div class="stat-card">
+                <h3> pendientes</h3>
+                <span id="quejas-pendientes" style="color: #f39c12;">0</span>
+            </div>
+
+        </div>
         <!-- Modal para Habitaciones -->
         <div id="room-modal" class="modal">
             <div class="modal-content">
