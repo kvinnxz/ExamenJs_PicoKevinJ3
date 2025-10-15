@@ -164,8 +164,6 @@ class SistemaLogin {
         // Validar campos
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        const remember = document.getElementById('remember').checked;
-
         if (!this.validarEmail(email) || !this.validarPassword(password)) {
             this.mostrarMensajeTemporal('Por favor, corrige los errores en el formulario', 'error');
             return;
@@ -183,7 +181,7 @@ class SistemaLogin {
 
             if (usuario) {
                 // Iniciar sesión
-                this.iniciarSesionUsuario(usuario, remember);
+                this.iniciarSesionUsuario(usuario);
                 this.mostrarMensajeBienvenida(usuario);
             } else {
                 throw new Error('Credenciales incorrectas');
@@ -219,7 +217,7 @@ class SistemaLogin {
         return usuario;
     }
 
-    iniciarSesionUsuario(usuario, remember = false) {
+    iniciarSesionUsuario(usuario = false) {
     // Crear sesión
     const sesion = {
         usuario: { // Guardamos todo el usuario, no solo algunos campos
@@ -230,7 +228,6 @@ class SistemaLogin {
             rol: usuario.rol 
         },
         timestamp: new Date().toISOString(),
-        expira: remember ? this.calcularExpiracion(30) : this.calcularExpiracion(1)
     };
 
     // Guardar sesión

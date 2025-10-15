@@ -62,11 +62,6 @@ class SistemaRegistro {
         document.getElementById('nacionalidad').addEventListener('change', (e) => {
             this.validarNacionalidad(e.target.value);
         });
-
-        // Validación de términos
-        document.getElementById('terminos').addEventListener('change', (e) => {
-            this.validarTerminos(e.target.checked);
-        });
     }
 
     setupPasswordValidation() {
@@ -268,19 +263,6 @@ class SistemaRegistro {
         this.limpiarError(errorElement, inputElement);
         return true;
     }
-
-    validarTerminos(aceptado) {
-        const errorElement = document.getElementById('error-terminos');
-
-        if (!aceptado) {
-            this.mostrarError(errorElement, 'Debe aceptar los términos y condiciones');
-            return false;
-        }
-
-        this.limpiarError(errorElement);
-        return true;
-    }
-
     // ========== UTILIDADES ==========
 
     mostrarError(errorElement, mensaje, inputElement = null) {
@@ -355,7 +337,6 @@ class SistemaRegistro {
         const telefono = document.getElementById('telefono').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirm-password').value;
-        const terminos = document.getElementById('terminos').checked;
 
         return (
             this.validarIdentificacion(identificacion) &&
@@ -364,8 +345,7 @@ class SistemaRegistro {
             this.validarEmail(email) &&
             this.validarTelefono(telefono) &&
             this.validarPassword(password) &&
-            this.validarConfirmacionPassword() &&
-            this.validarTerminos(terminos)
+            this.validarConfirmacionPassword() 
         );
     }
 
@@ -378,7 +358,6 @@ class SistemaRegistro {
         email: document.getElementById('email').value.toLowerCase(),
         telefono: document.getElementById('telefono').value,
         password: this.encriptarPassword(document.getElementById('password').value),
-        newsletter: document.getElementById('newsletter').checked,
         fechaRegistro: new Date().toISOString(),
         activo: true,
         rol: 'usuario' // Por defecto, todos los usuarios son 'usuario'
