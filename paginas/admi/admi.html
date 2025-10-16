@@ -90,6 +90,7 @@
                 <div id="bookings-list" class="cards-grid"></div>
             </div>
         </div>
+        <!-- Quejas y Reclamos Tab -->
         <div id="quejas" class="tab-content">
             <div class=" section-header">
                 <h2>gESTION DE QUEJAS Y RECLAMOS</h2>
@@ -109,16 +110,67 @@
             </div>
         </div>
 
-        <div class="stats-grid" style="margin-bottom: 20px ;">
-            <div class="stat-card">
-                <h3> Total quejas/reclamos</h3>
-                <span id="total-quejas">0</span>
-            </div>
-            <div class="stat-card">
-                <h3> pendientes</h3>
-                <span id="quejas-pendientes" style="color: #f39c12;">0</span>
-            </div>
+        <!-- Estadísticas de Quejas -->
+    <div class="stats-grid" style="margin-bottom: 20px;">
+        <div class="stat-card">
+            <h3>Total Quejas/Reclamos</h3>
+            <span id="total-quejas">0</span>
+        </div>
+        <div class="stat-card">
+            <h3>Pendientes</h3>
+            <span id="quejas-pendientes" style="color: #f39c12;">0</span>
+        </div>
+        <div class="stat-card">
+            <h3>Resueltas</h3>
+            <span id="quejas-resueltas" style="color: #27ae60;">0</span>
+        </div>
+        <div class="stat-card">
+            <h3>Rechazadas</h3>
+            <span id="quejas-rechazadas" style="color: #e74c3c;">0</span>
+        </div>
+    </div>
 
+    <!-- Lista de quejas -->
+    <div id="admin-quejas-list" class="cards-grid"></div>
+
+    <!-- Sin quejas -->
+    <div id="no-quejas" style="display: none; text-align: center; padding: 40px; color: #999;">
+        <p style="font-size: 1.2rem;">📭 No hay quejas o reclamos registrados</p>
+    </div>
+
+        <!-- MODAL PARA RESPONDER QUEJA -->
+        <div id="modal-respuesta-queja" class="modal">
+            <div class="modal-content">
+                <h3>Responder Queja/Reclamo</h3>
+                <div id="queja-detalle-admin" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <!-- Detalles de la queja -->
+                </div>
+                <form id="respuesta-queja-form">
+                    <input type="hidden" id="queja-id-respuesta">
+                    
+                    <div class="form-group">
+                        <label for="estado-respuesta">Estado de la Queja *</label>
+                        <select id="estado-respuesta" required style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px;">
+                            <option value="">Seleccione un estado</option>
+                            <option value="resuelto">✅ Resuelto</option>
+                            <option value="rechazado">❌ Rechazado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="respuesta-texto">Respuesta *</label>
+                        <textarea id="respuesta-texto" rows="5" required placeholder="Escribe la respuesta para el huésped..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 5px; resize: vertical;"></textarea>
+                        <div style="text-align: right; font-size: 0.85rem; color: #666; margin-top: 5px;">
+                            <span id="respuesta-char-count">0</span>/500 caracteres
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="adminPanel.closeQuejaModal()">Cancelar</button>
+                        <button type="submit" class="btn-primary">Enviar Respuesta</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <!-- Modal para Habitaciones -->
         <div id="room-modal" class="modal">

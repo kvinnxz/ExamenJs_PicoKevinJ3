@@ -3,7 +3,7 @@ class SistemaQuejas {
         this.usuarioActual = null;
         this.quejas = [];
         this.reservas = [];
-        this.quejaEnEdicion = null;
+        this.quejaParaEliminar = null;
         this.init();
     }
 
@@ -48,6 +48,12 @@ class SistemaQuejas {
     actualizarInterfazUsuario() {
         document.getElementById('user-name').textContent = this.usuarioActual.nombre.split(' ')[0];
         document.getElementById('banner-user-name').textContent = this.usuarioActual.nombre;
+    }
+
+    cerrarSesion() {
+        localStorage.removeItem('sesionActivaHotel');
+        localStorage.removeItem('usuarioActivo');
+        window.location.href = '../login/login.html';
     }
 
     // ========== CARGA DE DATOS ==========
@@ -164,7 +170,7 @@ class SistemaQuejas {
         if (mostrar) {
             formContainer.style.display = 'block';
             toggleBtn.textContent = '✕ Cancelar';
-            formContainer.scrollIntoView({ behavior: 'smooth' });
+            formContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } else {
             formContainer.style.display = 'none';
             toggleBtn.textContent = '+ Nueva Queja/Reclamo';
@@ -198,6 +204,7 @@ class SistemaQuejas {
         const queja = {
             id: 'Q' + Date.now(),
             usuarioId: this.usuarioActual.id,
+            usuarioNombre: this.usuarioActual.nombre,
             reservaId: reservaId,
             tipo: tipo,
             asunto: asunto,
@@ -273,5 +280,168 @@ class SistemaQuejas {
 
         const reserva = this.reservas.find(r => r.id === queja.reservaId);
 
+        div.innerHTML = `
+            <div class="queja-header">
+                <div class="queja-titulo">
+                    <h3>${queja.asunto}</h3>
+                    <div class="queja-meta">
+                        <span>📅 ${this.formatearFecha(queja.fecha)}</span>
+                        <span>🏨 ${reserva?.habitacion?.nombre || 'Reserva no encontrada'}</span>
+                        <span>📋 ${queja.id}</span>
+                    </div>
+                </div>
+                <div class="queja-actions">
+                    <span class="tipo-badge">${queja.tipo}</span>
+                    <span class="estado-badge ${queja.estado}">
+                        ${queja.estado === 'pendiente' ? '⏳ Pendiente' : 
+                          queja.estado === 'resuelto' ? '✅ Resuelto' : '❌ Rechazado'}
+                    </span>
+                    <button class="btn btn-primary" onclick="sistemaQuejas.verDetalle('${queja.id}')">
+                        Ver Detalle
+                    </button>
+                    ${queja.estado === 'pendiente' ? 
+                        `<button class="btn btn-danger" onclick="sistemaQuejas.eliminarQueja('${queja.id}')">
+                            Eliminar
+                        </button>` : ''}
+                </div>
+            </div>
+
+            <div class="queja-descripcion">
+                ${queja.descripcion}
+            </div>
+
+            ${queja.respuesta ? `
+                <div class="queja-respuesta">
+                    <h4>📬 Respuesta del Hotel (${this.formatearFecha(queja.fechaRespuesta)})</h4>
+                    <p>${queja.respuesta}</p>
+                </div>
+            ` : ''}
+        `;
+
+        return div;
+    }
+
+    // ========== VER DETALLE ==========
+
+    verDetalle(quejaId) {
+        const queja = this.quejas.find(q => q.id === quejaId);
+        if (!queja) return;
+
+        const reserva = this.reservas.find(r => r.id === queja.reservaId);
+        const detalleBody = document.getElementById('detalle-body');
+
+        detalleBody.innerHTML = `
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="color: #2c3e50; margin-bottom: 0.5rem;">Información de la Queja</h4>
+                <div style="display: grid; gap: 0.8rem;">
+                    <div><strong>Número de Ticket:</strong> ${queja.id}</div>
+                    <div><strong>Tipo:</strong> <span class="tipo-badge">${queja.tipo}</span></div>
+                    <div><strong>Estado:</strong> <span class="estado-badge ${queja.estado}">
+                        ${queja.estado === 'pendiente' ? '⏳ Pendiente' : 
+                          queja.estado === 'resuelto' ? '✅ Resuelto' : '❌ Rechazado'}
+                    </span></div>
+                    <div><strong>Fecha de Radicación:</strong> ${this.formatearFechaCompleta(queja.fecha)}</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="color: #2c3e50; margin-bottom: 0.5rem;">Reserva Asociada</h4>
+                <div style="display: grid; gap: 0.8rem;">
+                    <div><strong>Habitación:</strong> ${reserva?.habitacion?.nombre || 'No disponible'}</div>
+                    <div><strong>Fecha de Estadía:</strong> ${this.formatearFecha(reserva?.fechaInicio)} - ${this.formatearFecha(reserva?.fechaFin)}</div>
+                    <div><strong>Noches:</strong> ${reserva?.noches || 0}</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="color: #2c3e50; margin-bottom: 0.5rem;">Asunto</h4>
+                <p style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">${queja.asunto}</p>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h4 style="color: #2c3e50; margin-bottom: 0.5rem;">Descripción</h4>
+                <p style="background: #f8f9fa; padding: 1rem; border-radius: 8px; line-height: 1.6;">${queja.descripcion}</p>
+            </div>
+
+            ${queja.respuesta ? `
+                <div style="border-top: 2px solid #3498db; padding-top: 1.5rem; margin-top: 1.5rem;">
+                    <h4 style="color: #3498db; margin-bottom: 0.5rem;">
+                        📬 Respuesta del Hotel
+                    </h4>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                        Fecha de respuesta: ${this.formatearFechaCompleta(queja.fechaRespuesta)}
+                    </p>
+                    <p style="background: #e3f2fd; padding: 1rem; border-radius: 8px; line-height: 1.6; border-left: 3px solid #3498db;">
+                        ${queja.respuesta}
+                    </p>
+                </div>
+            ` : `
+                <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; border-left: 3px solid #f39c12;">
+                    <p style="margin: 0; color: #856404;">
+                        ⏳ Esta queja aún no ha sido respondida. Te notificaremos cuando recibas una respuesta.
+                    </p>
+                </div>
+            `}
+        `;
+
+        document.getElementById('modal-detalle').style.display = 'block';
+    }
+
+    // ========== ELIMINAR QUEJA ==========
+
+    eliminarQueja(quejaId) {
+        this.quejaParaEliminar = quejaId;
+        document.getElementById('modal-eliminar').style.display = 'block';
+    }
+
+    confirmarEliminar() {
+        if (!this.quejaParaEliminar) return;
+
+        const index = this.quejas.findIndex(q => q.id === this.quejaParaEliminar);
+        
+        if (index !== -1) {
+            this.quejas.splice(index, 1);
+            this.guardarQuejas();
+            this.renderizarQuejas();
+            this.actualizarContadores();
+            alert('✅ Queja eliminada correctamente');
+        }
+
+        this.quejaParaEliminar = null;
+        this.cerrarModales();
+    }
+
+    // ========== UTILIDADES ==========
+
+    formatearFecha(fechaISO) {
+        const fecha = new Date(fechaISO);
+        return fecha.toLocaleDateString('es-ES', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    }
+
+    formatearFechaCompleta(fechaISO) {
+        const fecha = new Date(fechaISO);
+        return fecha.toLocaleDateString('es-ES', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    cerrarModales() {
+        document.getElementById('modal-detalle').style.display = 'none';
+        document.getElementById('modal-eliminar').style.display = 'none';
     }
 }
+
+// Inicializar
+let sistemaQuejas;
+document.addEventListener('DOMContentLoaded', () => {
+    sistemaQuejas = new SistemaQuejas();
+});
